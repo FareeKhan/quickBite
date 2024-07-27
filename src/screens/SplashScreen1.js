@@ -1,10 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useNavigation} from '@react-navigation/native';
 import {Colors} from '../constants/color';
 import Icons from '../assets/icons';
 
-const SplashScreen = () => {
+const SplashScreen1 = () => {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.replace('Splash2');
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+  
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.bg1Container}>
@@ -20,7 +31,7 @@ const SplashScreen = () => {
   );
 };
 
-export default SplashScreen;
+export default SplashScreen1;
 
 const styles = StyleSheet.create({
   screen: {
