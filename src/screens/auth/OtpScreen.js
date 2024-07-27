@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { SplashScreen } from './src/screens'
 
-const App = () => {
+const OtpScreen = () => {
   return (
-    <SplashScreen/>
+    <View>
+      <Text>OtpScreen</Text>
+    </View>
   )
 }
 
-export default App
+export default OtpScreen
 
 const styles = StyleSheet.create({})

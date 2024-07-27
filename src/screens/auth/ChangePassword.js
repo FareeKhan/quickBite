@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { SplashScreen } from './src/screens'
 
-const App = () => {
+const ChangePassword = () => {
   return (
-    <SplashScreen/>
+    <View>
+      <Text>ChangePassword</Text>
+    </View>
   )
 }
 
-export default App
+export default ChangePassword
 
 const styles = StyleSheet.create({})

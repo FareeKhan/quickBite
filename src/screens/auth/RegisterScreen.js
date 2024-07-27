@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { SplashScreen } from './src/screens'
 
-const App = () => {
+const RegisterScreen = () => {
   return (
-    <SplashScreen/>
+    <View>
+      <Text>RegisterScreen</Text>
+    </View>
   )
 }
 
-export default App
+export default RegisterScreen
 
 const styles = StyleSheet.create({})
