@@ -11,6 +11,14 @@ import UserPlusIcon from '../assets/svgs/UserPlusIcon.svg';
 import UserIcon from '../assets/svgs/UserIcon.svg';
 import LockLarge from '../assets/svgs/LockLarge.svg';
 import OtpIcon from '../assets/svgs/OtpIcon.svg';
+import HomeIconNA from '../assets/svgs/Home.svg';
+import OrdersIconNA from '../assets/svgs/Orders.svg';
+import AccountIconNA from '../assets/svgs/Account.svg';
+import MyCartIconNA from '../assets/svgs/MyCart.svg';
+import MyCartIconA from '../assets/svgs/MyCartA.svg';
+import OrdersIconA from '../assets/svgs/OrdersA.svg';
+import AccountIconA from '../assets/svgs/AccountA.svg';
+import HomeIconA from '../assets/svgs/HomeA.svg';
 
 export default {
   BG1,
@@ -25,5 +33,13 @@ export default {
   UserPlusIcon,
   UserIcon,
   LockLarge,
-  OtpIcon
+  OtpIcon,
+  HomeIconNA,
+  OrdersIconNA,
+  AccountIconNA,
+  MyCartIconNA,
+  MyCartIconA,
+  OrdersIconA,
+  AccountIconA,
+  HomeIconA
 };

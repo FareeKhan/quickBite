@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { SplashScreen1,SplashScreen2 } from '../../screens';
 import AuthNavigator from '../auth';
+import BottomTabNavigation from '../bottomTab';
 
 export const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name={'Auth'}
         component={AuthNavigator}
+        options={commonHeaderOptions}
+      />
+      <Stack.Screen
+        name={'BottomTabNavigation'}
+        component={BottomTabNavigation}
         options={commonHeaderOptions}
       />
     </Stack.Navigator>
