@@ -47,7 +47,10 @@ const ForgotPasswordScreen = () => {
               />
             </View>
           </View>
-          <TouchableOpacity activeOpacity={0.8} style={styles.forgotBtn}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Auth', {screen: 'OtpScreen'})}
+            activeOpacity={0.8}
+            style={styles.forgotBtn}>
             <Text style={styles.forgotBtnText}>Send Code</Text>
           </TouchableOpacity>
         </KeyboardAwareScrollView>
@@ -95,8 +98,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: Colors.gray,
     paddingBottom: 10,
-    width:'70%',
-    alignSelf:"center"
+    width: '70%',
+    alignSelf: 'center',
   },
   inputContainer: {
     gap: 5,

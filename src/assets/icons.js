@@ -10,6 +10,7 @@ import EyeIcon from '../assets/svgs/EyeIcon.svg';
 import UserPlusIcon from '../assets/svgs/UserPlusIcon.svg';
 import UserIcon from '../assets/svgs/UserIcon.svg';
 import LockLarge from '../assets/svgs/LockLarge.svg';
+import OtpIcon from '../assets/svgs/OtpIcon.svg';
 
 export default {
   BG1,
@@ -23,5 +24,6 @@ export default {
   EyeIcon,
   UserPlusIcon,
   UserIcon,
-  LockLarge
+  LockLarge,
+  OtpIcon
 };

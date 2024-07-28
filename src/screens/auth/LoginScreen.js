@@ -68,7 +68,7 @@ const LoginScreen = () => {
             <Text style={styles.loginButtonText}>Login</Text>
           </TouchableOpacity>
           <Text style={styles.createAccount}>
-            Don’t have an account?{' '}
+            Don’t have an account?{'  '}
             <Text
               onPress={() => navigation.navigate('Auth', {screen: 'Register'})}
               style={styles.createAccountLink}>
