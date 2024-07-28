@@ -57,13 +57,23 @@ const LoginScreen = () => {
               <Icons.EyeIcon />
             </View>
           </View>
-          <Text style={styles.forgotPassword}>Forget Password?</Text>
+          <Text
+            onPress={() =>
+              navigation.navigate('Auth', {screen: 'ForgotPassword'})
+            }
+            style={styles.forgotPassword}>
+            Forget Password?
+          </Text>
           <TouchableOpacity activeOpacity={0.8} style={styles.loginButton}>
             <Text style={styles.loginButtonText}>Login</Text>
           </TouchableOpacity>
           <Text style={styles.createAccount}>
             Don’t have an account?{' '}
-            <Text style={styles.createAccountLink}>Create</Text>
+            <Text
+              onPress={() => navigation.navigate('Auth', {screen: 'Register'})}
+              style={styles.createAccountLink}>
+              Create
+            </Text>
           </Text>
           <View style={styles.orContainer}>
             <View style={styles.separator} />

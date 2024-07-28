@@ -5,7 +5,7 @@ import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
 import ForgotPasswordScreen from "./auth/ForgotPasswordScreen";
 import OtpScreen from "./auth/OtpScreen";
-import ChangePassword from "./auth/ChangePassword";
+import ChangePasswordScreen from "./auth/ChangePassword";
 
 export {
     SplashScreen1,
@@ -14,5 +14,5 @@ export {
     RegisterScreen,
     ForgotPasswordScreen,
     OtpScreen,
-    ChangePassword
+    ChangePasswordScreen
 }

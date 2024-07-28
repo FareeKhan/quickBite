@@ -9,6 +9,7 @@ import GoogleIcon from '../assets/svgs/GoogleIcon.svg';
 import EyeIcon from '../assets/svgs/EyeIcon.svg';
 import UserPlusIcon from '../assets/svgs/UserPlusIcon.svg';
 import UserIcon from '../assets/svgs/UserIcon.svg';
+import LockLarge from '../assets/svgs/LockLarge.svg';
 
 export default {
   BG1,
@@ -21,5 +22,6 @@ export default {
   GoogleIcon,
   EyeIcon,
   UserPlusIcon,
-  UserIcon
+  UserIcon,
+  LockLarge
 };
