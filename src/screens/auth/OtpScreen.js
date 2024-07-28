@@ -87,7 +87,12 @@ const OtpScreen = () => {
               contentContainerStyle={{gap: 17}}
             />
           </View>
-          <TouchableOpacity activeOpacity={0.8} style={styles.OtpBtn}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('Auth', {screen: 'ChangePassword'})
+            }
+            activeOpacity={0.8}
+            style={styles.OtpBtn}>
             <Text style={styles.OtpBtnText}>Send Code</Text>
           </TouchableOpacity>
           <Text style={styles.resendCodeText}>Resend code in 00:00</Text>
