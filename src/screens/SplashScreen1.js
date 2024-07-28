@@ -36,7 +36,7 @@ export default SplashScreen1;
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.BGColor,
   },
   bg1Container: {
     alignItems: 'flex-end',
