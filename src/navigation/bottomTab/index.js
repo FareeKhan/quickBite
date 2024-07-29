@@ -23,10 +23,12 @@ const BottomTabNavigation = () => {
         tabBarInactiveTintColor: Colors.gray,
         tabBarStyle: {
           backgroundColor: Colors.primary,
-          height: 90,
-          gap: 22,
-          paddingTop: 16,
+          height: 100,
+          gap: 23,
+          paddingTop: 22,
+          borderTopWidth:0
         },
+        tabBarHideOnKeyboard:'true'
       }}
       initialRouteName="Home">
       <Tab.Screen

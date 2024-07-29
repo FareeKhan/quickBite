@@ -4,5 +4,6 @@ export const Colors={
     white:'#FFFFFF',
     btnColor:'#FFBF00',
     darkBronze:'#4E3B01',
-    gray:'#898989'
+    gray:'#898989',
+    EerieBlack:"#15191F"
 }

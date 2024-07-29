@@ -19,6 +19,15 @@ import MyCartIconA from '../assets/svgs/MyCartA.svg';
 import OrdersIconA from '../assets/svgs/OrdersA.svg';
 import AccountIconA from '../assets/svgs/AccountA.svg';
 import HomeIconA from '../assets/svgs/HomeA.svg';
+import LocationIcon from '../assets/svgs/locationIcon.svg';
+import DownArrow from '../assets/svgs/downArrow.svg';
+import HeartIcon from '../assets/svgs/heartIcon.svg';
+import SearchIcon from '../assets/svgs/searchIcon.svg';
+import FilterIcon from '../assets/svgs/filterIcon.svg';
+import RightArrow from '../assets/svgs/rightArrow.svg';
+import StarIcon from '../assets/svgs/starIcon.svg';
+import MinusIcon from '../assets/svgs/Minus.svg';
+import PlusIcon from '../assets/svgs/Plus.svg';
 
 export default {
   BG1,
@@ -41,5 +50,14 @@ export default {
   MyCartIconA,
   OrdersIconA,
   AccountIconA,
-  HomeIconA
+  HomeIconA,
+  LocationIcon,
+  DownArrow,
+  HeartIcon,
+  SearchIcon,
+  FilterIcon,
+  RightArrow,
+  StarIcon,
+  MinusIcon,
+  PlusIcon
 };
