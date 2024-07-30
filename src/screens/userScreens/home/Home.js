@@ -132,7 +132,7 @@ const Home = () => {
                 contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
                 renderItem={({item}) => (
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('Restaurants')}
+                    onPress={()=>navigation.navigate(item.screen)}
                     style={styles.shopCard}
                     activeOpacity={0.8}>
                     <Icons.BG2

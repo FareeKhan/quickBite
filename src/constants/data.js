@@ -20,11 +20,13 @@ export const shops = [
     id: '1',
     title: 'All Restaurants',
     image: require('../assets/images/Shop/1.png'),
+    screen:'Restaurants'
   },
   {
     id: '2',
     title: 'Discounted Offers',
     image: require('../assets/images/Shop/2.png'),
+    screen:'DiscountedOffers'
   },
 ];
 
@@ -72,6 +74,22 @@ export const brands = [
   },
 ];
 
+export const discountedRestaurants = [
+  {
+    id: '1',
+    title: 'The Fast Food Town',
+    image: require('../assets/images/Restaurants/1.png'),
+    distance: '6.2km Away',
+    discount:'Flat 25% Off'
+  },
+  {
+    id: '2',
+    title: 'Foodistan',
+    image: require('../assets/images/Restaurants/2.png'),
+    distance: '8.2km Away',
+    discount:'upto 50% off'
+  },
+];
 export const restaurants = [
   {
     id: '1',

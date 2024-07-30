@@ -29,6 +29,7 @@ import StarIcon from '../assets/svgs/starIcon.svg';
 import MinusIcon from '../assets/svgs/Minus.svg';
 import PlusIcon from '../assets/svgs/Plus.svg';
 import YellowHeart from '../assets/svgs/yellowHeart.svg';
+import DiscountIcon from '../assets/svgs/discountIcon.svg';
 
 export default {
   BG1,
@@ -61,5 +62,6 @@ export default {
   StarIcon,
   MinusIcon,
   PlusIcon,
-  YellowHeart
+  YellowHeart,
+  DiscountIcon
 };
