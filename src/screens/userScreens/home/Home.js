@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   Image,
   FlatList,
+  ScrollView,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -27,7 +28,7 @@ import {
 
 const Home = () => {
   const navigation = useNavigation();
-  const [selectedCategory, setSelectedCategory] = useState(-1);
+  const [selectedCategory, setSelectedCategory] = useState(0);
 
   const handleCategoryPress = index => {
     setSelectedCategory(index === selectedCategory ? -1 : index);
@@ -35,194 +36,334 @@ const Home = () => {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <SafeAreaView style={styles.screen}>
-        <KeyboardAwareScrollView
-          showsVerticalScrollIndicator={false}
-          keyboardShouldPersistTaps="handled">
-          <View style={styles.headerContainer}>
-            <TouchableOpacity activeOpacity={0.8} style={styles.locationBtn}>
-              <Icons.LocationIcon />
-              <Text style={styles.locationText}>Hyderabad, Sindh</Text>
-              <Icons.DownArrow />
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.8} style={styles.heartBtn}>
-              <Icons.HeartIcon />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.searchContainer}>
-            <View style={styles.searchInputContainer}>
-              <Icons.SearchIcon />
-              <TextInput
-                placeholder="Search food, restaurants"
-                placeholderTextColor={Colors.gray}
-                style={styles.searchInput}
-              />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <SafeAreaView style={styles.screen}>
+          <KeyboardAwareScrollView
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled">
+            <View style={styles.headerContainer}>
+              <TouchableOpacity activeOpacity={0.8} style={styles.locationBtn}>
+                <Icons.LocationIcon />
+                <Text style={styles.locationText}>Hyderabad, Sindh</Text>
+                <Icons.DownArrow />
+              </TouchableOpacity>
+              <TouchableOpacity activeOpacity={0.8} style={styles.heartBtn}>
+                <Icons.HeartIcon />
+              </TouchableOpacity>
             </View>
-            <Icons.FilterIcon />
-          </View>
-          <View style={styles.section}>
-            <View style={styles.trackingCard}>
-              <View style={styles.trackingRow}>
-                <Text style={styles.trackingTitle}>Order Tracking</Text>
-                <Text style={styles.trackTime}>10 mins</Text>
+            <View style={styles.searchContainer}>
+              <View style={styles.searchInputContainer}>
+                <Icons.SearchIcon />
+                <TextInput
+                  placeholder="Search food, restaurants"
+                  placeholderTextColor={Colors.gray}
+                  style={styles.searchInput}
+                />
               </View>
-              <Slider
-                value={6}
-                minimumValue={1}
-                maximumValue={10}
-                step={1}
-                minimumTrackTintColor={Colors.btnColor}
-                maximumTrackTintColor={Colors.BGColor}
-                style={styles.slider}
-                thumbStyle={styles.sliderThumb}
-                trackStyle={styles.sliderTrack}
-                minTrackStyle={styles.minTrack}
-                maxTrackStyle={styles.maxTrack}
-                enabled={false}
-                thumbImage={require('../../../assets/images/ThumbImage.png')}
-              />
+              <Icons.FilterIcon />
             </View>
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitleText}>Today’s Deal</Text>
-            <View style={styles.dealContainer}>
-              <FlatList
-                data={deals}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
-                renderItem={({item}) => (
-                  <View style={styles.dealContentContainer}>
-                    <View style={styles.dealContentRow}>
-                      <View style={styles.dealTextContainer}>
-                        <Text style={styles.dealTitle}>{item.title}</Text>
-                        <View>
-                          {item.items.map((text, index) => (
-                            <Text key={index} style={styles.dealItemText}>
-                              {text}
+            <View style={styles.section}>
+              <View style={styles.trackingCard}>
+                <View style={styles.trackingRow}>
+                  <Text style={styles.trackingTitle}>Order Tracking</Text>
+                  <Text style={styles.trackTime}>10 mins</Text>
+                </View>
+                <Slider
+                  value={6}
+                  minimumValue={1}
+                  maximumValue={10}
+                  step={1}
+                  minimumTrackTintColor={Colors.btnColor}
+                  maximumTrackTintColor={Colors.BGColor}
+                  style={styles.slider}
+                  thumbStyle={styles.sliderThumb}
+                  trackStyle={styles.sliderTrack}
+                  minTrackStyle={styles.minTrack}
+                  maxTrackStyle={styles.maxTrack}
+                  enabled={false}
+                  thumbImage={require('../../../assets/images/ThumbImage.png')}
+                />
+              </View>
+            </View>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitleText}>Today’s Deal</Text>
+              <View style={styles.dealContainer}>
+                <FlatList
+                  data={deals}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
+                  renderItem={({item}) => (
+                    <View style={styles.dealContentContainer}>
+                      <View style={styles.dealContentRow}>
+                        <View style={styles.dealTextContainer}>
+                          <Text style={styles.dealTitle}>{item.title}</Text>
+                          <View>
+                            {item.items.map((text, index) => (
+                              <Text key={index} style={styles.dealItemText}>
+                                {text}
+                              </Text>
+                            ))}
+                          </View>
+                          <TouchableOpacity
+                            activeOpacity={0.8}
+                            style={styles.orderBtn}>
+                            <Text style={styles.orderBtnText}>
+                              {item.btnText}
                             </Text>
-                          ))}
+                          </TouchableOpacity>
                         </View>
-                        <TouchableOpacity
-                          activeOpacity={0.8}
-                          style={styles.orderBtn}>
-                          <Text style={styles.orderBtnText}>
-                            {item.btnText}
+                        <Image
+                          source={item.image}
+                          resizeMode="cover"
+                          style={{height: 100, width: 120}}
+                        />
+                      </View>
+                    </View>
+                  )}
+                />
+              </View>
+            </View>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitleText}>Shop Now</Text>
+              <View style={{marginTop: 20}}>
+                <FlatList
+                  data={shops}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
+                  renderItem={({item}) => (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate(item.screen)}
+                      style={styles.shopCard}
+                      activeOpacity={0.8}>
+                      <Icons.BG2
+                        style={styles.shopBackground}
+                        width={250}
+                        height={120}
+                      />
+                      <View style={styles.shopContent}>
+                        <Image
+                          source={item.image}
+                          resizeMode="cover"
+                          style={styles.shopImage}
+                        />
+                        <Text style={styles.shopTitle}>{item.title}</Text>
+                      </View>
+                    </TouchableOpacity>
+                  )}
+                />
+              </View>
+            </View>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitleText}>Category</Text>
+              <View style={{marginTop: 20}}>
+                <FlatList
+                  data={categories}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
+                  renderItem={({item, index}) => (
+                    <TouchableOpacity
+                      onPress={() => handleCategoryPress(index)}
+                      style={[
+                        styles.categoryCard,
+                        {
+                          backgroundColor:
+                            selectedCategory === index
+                              ? Colors.btnColor
+                              : Colors.EerieBlack,
+                        },
+                      ]}>
+                      <Image
+                        source={item.image}
+                        resizeMode="cover"
+                        style={styles.categoryImage}
+                      />
+                      <Text
+                        style={[
+                          styles.categoryTitle,
+                          {
+                            color:
+                              selectedCategory === index
+                                ? Colors.primary
+                                : Colors.white,
+                          },
+                        ]}>
+                        {item.title}
+                      </Text>
+                    </TouchableOpacity>
+                  )}
+                />
+              </View>
+            </View>
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <Text style={styles.sectionTitleText}>
+                  Restaurants near you
+                </Text>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  style={styles.viewAllContainer}>
+                  <Text style={styles.viewAllText}>View All</Text>
+                  <Icons.RightArrow style={{top: 2}} />
+                </TouchableOpacity>
+              </View>
+              <View style={{marginTop: 20}}>
+                <FlatList
+                  data={restaurants}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
+                  renderItem={({item}) => (
+                    <TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={()=>navigation.navigate('RestaurantDetail')}
+                    >
+                      <Image
+                        source={item.image}
+                        resizeMode="cover"
+                        style={styles.restaurantImage}
+                      />
+                      <View style={styles.restaurantDetails}>
+                        <View>
+                          <Text style={styles.restaurantTitle}>
+                            {item.title}
                           </Text>
-                        </TouchableOpacity>
+                          <View style={styles.ratingContainer}>
+                            <Text style={styles.ratingText}>Rating</Text>
+                            <View style={styles.ratingStars}>
+                              <Icons.StarIcon />
+                              <Icons.StarIcon />
+                              <Icons.StarIcon />
+                              <Icons.StarIcon />
+                              <Icons.StarIcon />
+                            </View>
+                          </View>
+                        </View>
+                        <Text style={styles.restaurantDistance}>
+                          {item.distance}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  )}
+                />
+              </View>
+            </View>
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <Text style={styles.sectionTitleText}>Popular this week</Text>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  style={styles.viewAllContainer}>
+                  <Text style={styles.viewAllText}>View All</Text>
+                  <Icons.RightArrow style={{top: 2}} />
+                </TouchableOpacity>
+              </View>
+              <View style={{marginTop: 20}}>
+                <FlatList
+                  data={popular}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
+                  renderItem={({item}) => (
+                    <>
+                      <View style={{paddingTop: 30}}>
+                        <View style={styles.itemCard}>
+                          <View style={styles.itemTextContainer}>
+                            <Text style={styles.itemName}>{item.name}</Text>
+                            <Text style={styles.itemRestaurant}>
+                              {item.restaurant}
+                            </Text>
+                            <Text style={styles.itemPrice}>{item.price}</Text>
+                          </View>
+                          <View style={styles.qtyContainer}>
+                            <View style={styles.qtyIconContainer}>
+                              <Icons.MinusIcon />
+                            </View>
+                            <Text style={styles.itemQuantity}>1</Text>
+                            <View style={styles.qtyIconContainer}>
+                              <Icons.PlusIcon />
+                            </View>
+                          </View>
+                        </View>
                       </View>
                       <Image
                         source={item.image}
                         resizeMode="cover"
-                        style={{height: 100, width: 120}}
+                        style={styles.itemImage}
                       />
-                    </View>
-                  </View>
-                )}
-              />
+                    </>
+                  )}
+                />
+              </View>
             </View>
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitleText}>Shop Now</Text>
-            <View style={{marginTop: 20}}>
-              <FlatList
-                data={shops}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
-                renderItem={({item}) => (
-                  <TouchableOpacity
-                    onPress={()=>navigation.navigate(item.screen)}
-                    style={styles.shopCard}
-                    activeOpacity={0.8}>
-                    <Icons.BG2
-                      style={styles.shopBackground}
-                      width={250}
-                      height={120}
-                    />
-                    <View style={styles.shopContent}>
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <Text style={styles.sectionTitleText}>Hot & Spicy</Text>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  style={styles.viewAllContainer}>
+                  <Text style={styles.viewAllText}>View All</Text>
+                  <Icons.RightArrow style={{top: 2}} />
+                </TouchableOpacity>
+              </View>
+              <View style={{marginTop: 20}}>
+                <FlatList
+                  data={popular}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
+                  renderItem={({item}) => (
+                    <>
+                      <View style={{paddingTop: 30}}>
+                        <View style={styles.itemCard}>
+                          <View style={styles.itemTextContainer}>
+                            <Text style={styles.itemName}>{item.name}</Text>
+                            <Text style={styles.itemRestaurant}>
+                              {item.restaurant}
+                            </Text>
+                            <Text style={styles.itemPrice}>{item.price}</Text>
+                          </View>
+                          <View style={styles.qtyContainer}>
+                            <View style={styles.qtyIconContainer}>
+                              <Icons.MinusIcon />
+                            </View>
+                            <Text style={styles.itemQuantity}>1</Text>
+                            <View style={styles.qtyIconContainer}>
+                              <Icons.PlusIcon />
+                            </View>
+                          </View>
+                        </View>
+                      </View>
                       <Image
                         source={item.image}
                         resizeMode="cover"
-                        style={styles.shopImage}
+                        style={styles.itemImage}
                       />
-                      <Text style={styles.shopTitle}>{item.title}</Text>
-                    </View>
-                  </TouchableOpacity>
-                )}
-              />
+                    </>
+                  )}
+                />
+              </View>
             </View>
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitleText}>Category</Text>
-            <View style={{marginTop: 20}}>
-              <FlatList
-                data={categories}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
-                renderItem={({item, index}) => (
-                  <TouchableOpacity
-                    onPress={() => handleCategoryPress(index)}
-                    style={[
-                      styles.categoryCard,
-                      {
-                        backgroundColor:
-                          selectedCategory === index
-                            ? Colors.btnColor
-                            : Colors.EerieBlack,
-                      },
-                    ]}>
-                    <Image
-                      source={item.image}
-                      resizeMode="cover"
-                      style={styles.categoryImage}
-                    />
-                    <Text
-                      style={[
-                        styles.categoryTitle,
-                        {
-                          color:
-                            selectedCategory === index
-                              ? Colors.primary
-                              : Colors.white,
-                        },
-                      ]}>
-                      {item.title}
-                    </Text>
-                  </TouchableOpacity>
-                )}
-              />
-            </View>
-          </View>
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Text style={styles.sectionTitleText}>Restaurants near you</Text>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.viewAllContainer}>
-                <Text style={styles.viewAllText}>View All</Text>
-                <Icons.RightArrow style={{top: 2}} />
-              </TouchableOpacity>
-            </View>
-            <View style={{marginTop: 20}}>
-              <FlatList
-                data={restaurants}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
-                renderItem={({item}) => (
-                  <View>
-                    <Image
-                      source={item.image}
-                      resizeMode="cover"
-                      style={styles.restaurantImage}
-                    />
-                    <View style={styles.restaurantDetails}>
-                      <View>
-                        <Text style={styles.restaurantTitle}>{item.title}</Text>
-                        <View style={styles.ratingContainer}>
-                          <Text style={styles.ratingText}>Rating</Text>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitleText}>Top Brands</Text>
+              <View style={{marginTop: 20}}>
+                <FlatList
+                  data={brands}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
+                  renderItem={({item}) => (
+                    <View style={styles.brandCard}>
+                      <Image
+                        source={item.image}
+                        resizeMode="contain"
+                        style={styles.brandImage}
+                      />
+                      <View style={styles.brandInfo}>
+                        <Text style={styles.brandTitle}>{item.title}</Text>
+                        <View style={styles.brandRatingWrapper}>
                           <View style={styles.ratingStars}>
                             <Icons.StarIcon />
                             <Icons.StarIcon />
@@ -230,148 +371,17 @@ const Home = () => {
                             <Icons.StarIcon />
                             <Icons.StarIcon />
                           </View>
-                        </View>
-                      </View>
-                      <Text style={styles.restaurantDistance}>
-                        {item.distance}
-                      </Text>
-                    </View>
-                  </View>
-                )}
-              />
-            </View>
-          </View>
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Text style={styles.sectionTitleText}>Popular this week</Text>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.viewAllContainer}>
-                <Text style={styles.viewAllText}>View All</Text>
-                <Icons.RightArrow style={{top: 2}} />
-              </TouchableOpacity>
-            </View>
-            <View style={{marginTop: 20}}>
-              <FlatList
-                data={popular}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
-                renderItem={({item}) => (
-                  <>
-                    <View style={{paddingTop: 30}}>
-                      <View style={styles.itemCard}>
-                        <View style={styles.itemTextContainer}>
-                          <Text style={styles.itemName}>{item.name}</Text>
-                          <Text style={styles.itemRestaurant}>
-                            {item.restaurant}
-                          </Text>
-                          <Text style={styles.itemPrice}>{item.price}</Text>
-                        </View>
-                        <View style={styles.qtyContainer}>
-                          <View style={styles.qtyIconContainer}>
-                            <Icons.MinusIcon />
-                          </View>
-                          <Text style={styles.itemQuantity}>1</Text>
-                          <View style={styles.qtyIconContainer}>
-                            <Icons.PlusIcon />
-                          </View>
+                          <Text style={styles.brandTime}>{item.time}</Text>
                         </View>
                       </View>
                     </View>
-                    <Image
-                      source={item.image}
-                      resizeMode="cover"
-                      style={styles.itemImage}
-                    />
-                  </>
-                )}
-              />
+                  )}
+                />
+              </View>
             </View>
-          </View>
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Text style={styles.sectionTitleText}>Hot & Spicy</Text>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.viewAllContainer}>
-                <Text style={styles.viewAllText}>View All</Text>
-                <Icons.RightArrow style={{top: 2}} />
-              </TouchableOpacity>
-            </View>
-            <View style={{marginTop: 20}}>
-              <FlatList
-                data={popular}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
-                renderItem={({item}) => (
-                  <>
-                    <View style={{paddingTop: 30}}>
-                      <View style={styles.itemCard}>
-                        <View style={styles.itemTextContainer}>
-                          <Text style={styles.itemName}>{item.name}</Text>
-                          <Text style={styles.itemRestaurant}>
-                            {item.restaurant}
-                          </Text>
-                          <Text style={styles.itemPrice}>{item.price}</Text>
-                        </View>
-                        <View style={styles.qtyContainer}>
-                          <View style={styles.qtyIconContainer}>
-                            <Icons.MinusIcon />
-                          </View>
-                          <Text style={styles.itemQuantity}>1</Text>
-                          <View style={styles.qtyIconContainer}>
-                            <Icons.PlusIcon />
-                          </View>
-                        </View>
-                      </View>
-                    </View>
-                    <Image
-                      source={item.image}
-                      resizeMode="cover"
-                      style={styles.itemImage}
-                    />
-                  </>
-                )}
-              />
-            </View>
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitleText}>Top Brands</Text>
-            <View style={{marginTop: 20}}>
-              <FlatList
-                data={brands}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
-                renderItem={({item}) => (
-                  <View style={styles.brandCard}>
-                    <Image
-                      source={item.image}
-                      resizeMode="contain"
-                      style={styles.brandImage}
-                    />
-                    <View style={styles.brandInfo}>
-                      <Text style={styles.brandTitle}>{item.title}</Text>
-                      <View style={styles.brandRatingWrapper}>
-                        <View style={styles.ratingStars}>
-                          <Icons.StarIcon />
-                          <Icons.StarIcon />
-                          <Icons.StarIcon />
-                          <Icons.StarIcon />
-                          <Icons.StarIcon />
-                        </View>
-                        <Text style={styles.brandTime}>{item.time}</Text>
-                      </View>
-                    </View>
-                  </View>
-                )}
-              />
-            </View>
-          </View>
-        </KeyboardAwareScrollView>
-      </SafeAreaView>
+          </KeyboardAwareScrollView>
+        </SafeAreaView>
+      </ScrollView>
     </TouchableWithoutFeedback>
   );
 };
@@ -520,8 +530,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     top: '18%',
-    left: '25%',
+    // left: '27%',
     gap: 5,
+    alignSelf:"center"
   },
   shopImage: {
     height: 50,

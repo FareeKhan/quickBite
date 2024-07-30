@@ -30,6 +30,14 @@ import MinusIcon from '../assets/svgs/Minus.svg';
 import PlusIcon from '../assets/svgs/Plus.svg';
 import YellowHeart from '../assets/svgs/yellowHeart.svg';
 import DiscountIcon from '../assets/svgs/discountIcon.svg';
+import SearchYellow from '../assets/svgs/searchYellow.svg';
+import HeartYellowNF from '../assets/svgs/heartYellowNF.svg';
+import Share from '../assets/svgs/share.svg';
+import StarLarge from '../assets/svgs/Star.svg';
+import ThumbIcon from '../assets/svgs/ThumbIcon.svg';
+import PercentRound from '../assets/svgs/percentRound.svg';
+import Kababjees from '../assets/svgs/Kababjees.svg';
+import Burger from '../assets/svgs/Burger.svg';
 
 export default {
   BG1,
@@ -63,5 +71,13 @@ export default {
   MinusIcon,
   PlusIcon,
   YellowHeart,
-  DiscountIcon
+  DiscountIcon,
+  SearchYellow,
+  HeartYellowNF,
+  Share,
+  StarLarge,
+  ThumbIcon,
+  PercentRound,
+  Kababjees,
+  Burger
 };

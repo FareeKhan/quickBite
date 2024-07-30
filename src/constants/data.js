@@ -20,13 +20,13 @@ export const shops = [
     id: '1',
     title: 'All Restaurants',
     image: require('../assets/images/Shop/1.png'),
-    screen:'Restaurants'
+    screen: 'Restaurants',
   },
   {
     id: '2',
     title: 'Discounted Offers',
     image: require('../assets/images/Shop/2.png'),
-    screen:'DiscountedOffers'
+    screen: 'DiscountedOffers',
   },
 ];
 
@@ -80,16 +80,17 @@ export const discountedRestaurants = [
     title: 'The Fast Food Town',
     image: require('../assets/images/Restaurants/1.png'),
     distance: '6.2km Away',
-    discount:'Flat 25% Off'
+    discount: 'Flat 25% Off',
   },
   {
     id: '2',
     title: 'Foodistan',
     image: require('../assets/images/Restaurants/2.png'),
     distance: '8.2km Away',
-    discount:'upto 50% off'
+    discount: 'upto 50% off',
   },
 ];
+
 export const restaurants = [
   {
     id: '1',
@@ -123,6 +124,51 @@ export const restaurants = [
   },
 ];
 
+export const availableDeals = [
+  {
+    id: '1',
+    discount: '25% off',
+    desc: 'Min. order Rs 199 and specialsavings for quickbite members',
+  },
+  {
+    id: '2',
+    discount: '25% off',
+    desc: 'Min. order Rs 199 and specialsavings for quickbite members',
+  },
+  {
+    id: '3',
+    discount: '25% off',
+    desc: 'Min. order Rs 199 and specialsavings for quickbite members',
+  },
+];
+
+export const productData = [
+  {
+    id: '1',
+    name: 'Double Decker',
+    desc: 'Our best selling double decker beef burger with 2 beef patty and special sauce',
+    price: 'Rs 350',
+  },
+  {
+    id: '2',
+    name: 'Double Decker',
+    desc: 'Our best selling double decker beef burger with 2 beef patty and special sauce',
+    price: 'Rs 350',
+  },
+  {
+    id: '3',
+    name: 'Double Decker',
+    desc: 'Our best selling double decker beef burger with 2 beef patty and special sauce',
+    price: 'Rs 350',
+  },
+  {
+    id: '4',
+    name: 'Double Decker',
+    desc: 'Our best selling double decker beef burger with 2 beef patty and special sauce',
+    price: 'Rs 350',
+  },
+];
+
 export const popular = [
   {
     id: '1',
@@ -145,4 +191,14 @@ export const popular = [
     restaurant: 'Kababjees',
     price: '$350',
   },
+];
+
+export const categoryBtns = [
+  {id: '1', title: 'Popular'},
+  {id: '2', title: 'Burgers'},
+  {id: '3', title: 'Fries'},
+  {id: '4', title: 'Drinks'},
+  {id: '5', title: 'Burgers'},
+  {id: '6', title: 'Combo'},
+  {id: '7', title: 'Dessert'},
 ];
