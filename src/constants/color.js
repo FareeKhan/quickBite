@@ -5,5 +5,6 @@ export const Colors={
     btnColor:'#FFBF00',
     darkBronze:'#4E3B01',
     gray:'#898989',
-    EerieBlack:"#15191F"
+    EerieBlack:"#15191F",
+    black:'#000000'
 }

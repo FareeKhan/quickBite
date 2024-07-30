@@ -85,6 +85,24 @@ export const restaurants = [
     image: require('../assets/images/Restaurants/2.png'),
     distance: '8.2km Away',
   },
+  {
+    id: '3',
+    title: 'Foodistan',
+    image: require('../assets/images/Restaurants/1.png'),
+    distance: '8.2km Away',
+  },
+  {
+    id: '4',
+    title: 'Foodistan',
+    image: require('../assets/images/Restaurants/2.png'),
+    distance: '8.2km Away',
+  },
+  {
+    id: '5',
+    title: 'Foodistan',
+    image: require('../assets/images/Restaurants/1.png'),
+    distance: '8.2km Away',
+  },
 ];
 
 export const popular = [

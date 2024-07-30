@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useNavigation} from '@react-navigation/native';
 import {Slider} from '@react-native-assets/slider';
 import {Colors} from '../../../constants/color';
 import Icons from '../../../assets/icons';
@@ -25,6 +26,7 @@ import {
 } from '../../../constants/data';
 
 const Home = () => {
+  const navigation = useNavigation();
   const [selectedCategory, setSelectedCategory] = useState(-1);
 
   const handleCategoryPress = index => {
@@ -129,7 +131,10 @@ const Home = () => {
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
                 renderItem={({item}) => (
-                  <View style={styles.shopCard}>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('Restaurants')}
+                    style={styles.shopCard}
+                    activeOpacity={0.8}>
                     <Icons.BG2
                       style={styles.shopBackground}
                       width={250}
@@ -143,7 +148,7 @@ const Home = () => {
                       />
                       <Text style={styles.shopTitle}>{item.title}</Text>
                     </View>
-                  </View>
+                  </TouchableOpacity>
                 )}
               />
             </View>

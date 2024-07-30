@@ -28,6 +28,7 @@ import RightArrow from '../assets/svgs/rightArrow.svg';
 import StarIcon from '../assets/svgs/starIcon.svg';
 import MinusIcon from '../assets/svgs/Minus.svg';
 import PlusIcon from '../assets/svgs/Plus.svg';
+import YellowHeart from '../assets/svgs/yellowHeart.svg';
 
 export default {
   BG1,
@@ -59,5 +60,6 @@ export default {
   RightArrow,
   StarIcon,
   MinusIcon,
-  PlusIcon
+  PlusIcon,
+  YellowHeart
 };
