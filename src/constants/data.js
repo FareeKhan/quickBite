@@ -202,3 +202,12 @@ export const categoryBtns = [
   {id: '6', title: 'Combo'},
   {id: '7', title: 'Dessert'},
 ];
+
+export const drinks = [
+  { name: 'Fizzup - 500ml', price: '199.00' },
+  { name: 'ColaNext - 500ml', price: '199.00' },
+];
+
+export const cheese = [
+  { name: 'Cheese slice', price: '100.00' },
+];

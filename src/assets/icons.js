@@ -38,6 +38,7 @@ import ThumbIcon from '../assets/svgs/ThumbIcon.svg';
 import PercentRound from '../assets/svgs/percentRound.svg';
 import Kababjees from '../assets/svgs/Kababjees.svg';
 import Burger from '../assets/svgs/Burger.svg';
+import DropdownRight from '../assets/svgs/dropdownRight.svg';
 
 export default {
   BG1,
@@ -79,5 +80,6 @@ export default {
   ThumbIcon,
   PercentRound,
   Kababjees,
-  Burger
+  Burger,
+  DropdownRight
 };

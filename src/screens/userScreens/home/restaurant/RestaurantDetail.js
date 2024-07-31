@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
+  LogBox
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
@@ -20,6 +21,10 @@ import {
 const RestaurantDetail = () => {
   const navigation = useNavigation();
   const [selectedCategory, setSelectedCategory] = useState(0);
+
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, []);
 
   const handleCategoryPress = index => {
     setSelectedCategory(index === selectedCategory ? -1 : index);
@@ -141,7 +146,10 @@ const RestaurantDetail = () => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.productList}
           renderItem={({item}) => (
-            <View style={styles.productItem}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ItemDetail')}
+              activeOpacity={0.8}
+              style={styles.productItem}>
               <View style={styles.productInfo}>
                 <Text style={styles.productName}>{item.name}</Text>
                 <Text style={styles.productDescription}>{item.desc}</Text>
@@ -155,7 +163,7 @@ const RestaurantDetail = () => {
                 </View>
               </View>
               <Icons.Burger style={styles.productImage} />
-            </View>
+            </TouchableOpacity>
           )}
         />
       </ScrollView>
@@ -368,8 +376,8 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   categoryButton: {
-    paddingHorizontal: 30,
-    paddingVertical: 15,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
