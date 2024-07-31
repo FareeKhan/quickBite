@@ -204,10 +204,14 @@ export const categoryBtns = [
 ];
 
 export const drinks = [
-  { name: 'Fizzup - 500ml', price: '199.00' },
-  { name: 'ColaNext - 500ml', price: '199.00' },
+  {name: 'Fizzup - 500ml', price: '199.00'},
+  {name: 'ColaNext - 500ml', price: '199.00'},
 ];
 
-export const cheese = [
-  { name: 'Cheese slice', price: '100.00' },
+export const cheese = [{name: 'Cheese slice', price: '100.00'}];
+
+export const orderCancelOptions = [
+  {title: 'Remove it from my order'},
+  {title: 'Cancel the entire order'},
+  {title: 'Call me and Confirm'},
 ];

@@ -9,14 +9,17 @@ import {
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
+import BottomSheetComponent from '../../../../components/BottomSheetComponent';
+import {drinks, cheese, orderCancelOptions} from '../../../../constants/data';
 import {Colors} from '../../../../constants/color';
 import Icons from '../../../../assets/icons';
-import {drinks, cheese} from '../../../../constants/data';
 
 const ItemDetail = () => {
   const [qty, setQty] = useState(0);
   const [selectedDrink, setSelectedDrink] = useState(null);
   const [selectedCheese, setSelectedCheese] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [isOpened, setisOpened] = useState(false);
   const navigation = useNavigation();
 
   const handleSelectDrink = drink => {
@@ -25,6 +28,10 @@ const ItemDetail = () => {
 
   const handleSelectCheese = item => {
     setSelectedCheese(item);
+  };
+
+  const handleSelectOption = item => {
+    setSelectedOption(item);
   };
 
   return (
@@ -61,7 +68,14 @@ const ItemDetail = () => {
               onPress={() => handleSelectDrink(drink)}>
               <View
                 style={{flexDirection: 'row', alignItems: 'center', gap: 15}}>
-                <View style={styles.optionCircle}>
+                <View
+                  style={[
+                    styles.optionCircle,
+                    {
+                      backgroundColor:
+                        selectedDrink === drink && Colors.btnColor,
+                    },
+                  ]}>
                   {selectedDrink === drink && (
                     <View style={styles.optionInnerCircle} />
                   )}
@@ -88,7 +102,14 @@ const ItemDetail = () => {
               onPress={() => handleSelectCheese(item)}>
               <View
                 style={{flexDirection: 'row', alignItems: 'center', gap: 15}}>
-                <View style={styles.optionCircle}>
+                <View
+                  style={[
+                    styles.optionCircle,
+                    {
+                      backgroundColor:
+                        selectedCheese === item && Colors.btnColor,
+                    },
+                  ]}>
                   {selectedCheese === item && (
                     <View style={styles.optionInnerCircle} />
                   )}
@@ -114,12 +135,64 @@ const ItemDetail = () => {
         <Text style={styles.productAvailabilityTitle}>
           If this product is not available
         </Text>
-        <View style={styles.removeFromOrderContainer}>
+        {isOpened ? (
+          <BottomSheetComponent
+            onPressMenu={() => setisOpened(!isOpened)}
+            Component={() => (
+              <>
+                <TouchableOpacity
+                  onPress={() => setisOpened(!isOpened)}
+                  activeOpacity={0.8}
+                  style={styles.CrossIconContainer}>
+                  <Icons.CrossIcon />
+                </TouchableOpacity>
+                <View style={{paddingHorizontal: 20}}>
+                  <Text style={styles.BSTitle}>
+                    If this product is not available
+                  </Text>
+                  {orderCancelOptions.map(item => (
+                    <TouchableOpacity
+                      onPress={() => handleSelectOption(item)}
+                      activeOpacity={0.8}
+                      style={styles.optionRow}>
+                      <View
+                        style={[
+                          styles.optionCircle,
+                          {
+                            backgroundColor:
+                              selectedOption === item && Colors.btnColor,
+                          },
+                        ]}>
+                        {selectedOption === item && (
+                          <View style={styles.optionInnerCircle} />
+                        )}
+                      </View>
+                      <Text style={styles.optionValue}>{item.title}</Text>
+                    </TouchableOpacity>
+                  ))}
+                  <TouchableOpacity
+                    onPress={() => setisOpened(!isOpened)}
+                    activeOpacity={0.8}
+                    style={styles.applyBtn}>
+                    <Text style={styles.applyBtnText}>Apply</Text>
+                  </TouchableOpacity>
+                </View>
+              </>
+            )}
+            BGSheetColor={Colors.EerieBlack}
+          />
+        ) : null}
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => {
+            setisOpened(!isOpened);
+          }}
+          style={styles.removeFromOrderContainer}>
           <Text style={styles.removeFromOrderText}>
             Remove it from my order
           </Text>
           <Icons.DropdownRight />
-        </View>
+        </TouchableOpacity>
         <View style={{marginTop: 40}}>
           <View style={styles.addToCartContainer}>
             <View
@@ -258,7 +331,24 @@ const styles = StyleSheet.create({
     top: 2,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  optionValue: {
+    fontFamily: 'Manrope-Medium',
+    fontSize: 15,
+    color: Colors.gray,
+  },
+  applyBtn: {
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
     backgroundColor: Colors.btnColor,
+    marginVertical: 20,
+  },
+  applyBtnText: {
+    fontFamily: 'Manrope-Bold',
+    color: Colors.darkBronze,
+    fontSize: 17,
   },
   optionInnerCircle: {
     height: 11,
@@ -310,6 +400,29 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Medium',
     fontSize: 17,
     color: Colors.white,
+  },
+  CrossIconContainer: {
+    height: 40,
+    width: 40,
+    borderRadius: 50,
+    backgroundColor: Colors.BGColor,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'flex-end',
+    marginRight: 10,
+    marginTop: 10,
+  },
+  BSTitle: {
+    fontFamily: 'Manrope-Medium',
+    fontSize: 17,
+    color: Colors.white,
+    marginBottom: 25,
+  },
+  optionRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    marginBottom: 15,
   },
   removeFromOrderContainer: {
     padding: 20,

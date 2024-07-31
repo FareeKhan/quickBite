@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
-  LogBox
+  LogBox,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
@@ -156,9 +156,13 @@ const RestaurantDetail = () => {
                 <View style={styles.priceContainer}>
                   <Text style={styles.productPrice}>{item.price}</Text>
                   <View style={styles.quantityContainer}>
-                    <Icons.MinusIcon style={styles.quantityIcon} />
+                    <View style={styles.quantityIcon}>
+                      <Icons.MinusIcon />
+                    </View>
                     <Text style={styles.quantityText}>1</Text>
-                    <Icons.PlusIcon style={styles.quantityIcon} />
+                    <View style={styles.quantityIcon}>
+                      <Icons.PlusIcon />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -378,7 +382,7 @@ const styles = StyleSheet.create({
   categoryButton: {
     paddingHorizontal: 20,
     paddingVertical: 10,
-    borderRadius: 20,
+    borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -39,6 +39,7 @@ import PercentRound from '../assets/svgs/percentRound.svg';
 import Kababjees from '../assets/svgs/Kababjees.svg';
 import Burger from '../assets/svgs/Burger.svg';
 import DropdownRight from '../assets/svgs/dropdownRight.svg';
+import CrossIcon from '../assets/svgs/crossIcon.svg';
 
 export default {
   BG1,
@@ -81,5 +82,6 @@ export default {
   PercentRound,
   Kababjees,
   Burger,
-  DropdownRight
+  DropdownRight,
+  CrossIcon
 };
