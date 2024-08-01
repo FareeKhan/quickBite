@@ -95,7 +95,10 @@ const Account = () => {
         </View>
         <View style={{marginTop: 40}}>
           <Text style={styles.Title}>Benefits for you</Text>
-          <TouchableOpacity activeOpacity={0.8} style={styles.item}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Rewards')}
+            activeOpacity={0.8}
+            style={styles.item}>
             <View style={styles.itemRow}>
               <Icons.Trophy />
               <Text style={styles.itemTitle}>Rewards</Text>

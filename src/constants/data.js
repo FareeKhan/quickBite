@@ -230,3 +230,20 @@ export const deliveryOptions = [
   },
   {title: 'Pickup', time: '15 - 20 mins', date: 'Wed, 12 Jun', price: ''},
 ];
+export const tasks = [
+  {
+    title: 'Task 01',
+    task: 'Complete at least 1 order at midnight between 12:00 am to 2:00 am',
+    points:'15 Points'
+  },
+  {
+    title: 'Task 02',
+    task: 'Complete at least 1 order at midnight between 12:00 am to 2:00 am',
+    points:'15 Points'
+  },
+  {
+    title: 'Task 03',
+    task: 'Complete at least 1 order at midnight between 12:00 am to 2:00 am',
+    points:'15 Points'
+  },
+];
