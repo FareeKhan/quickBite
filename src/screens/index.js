@@ -21,6 +21,7 @@ import OrdersScreen from "./userScreens/orders/Orders";
 import LiveOrders from "./userScreens/orders/LiveOrders";
 // account
 import AccountScreen from "./userScreens/account/Account";
+import HelpCenter from "./userScreens/account/HelpCenter";
 
 export {
     SplashScreen1,
@@ -39,5 +40,6 @@ export {
     OrdersScreen,
     AccountScreen,
     LiveOrders,
-    Checkout
+    Checkout,
+    HelpCenter
 }

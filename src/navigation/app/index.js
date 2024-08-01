@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { SplashScreen1,SplashScreen2 ,RestaurantsScreen,DiscountedOffersScreen,RestaurantDetailScreen,ItemDetailScreen,Checkout} from '../../screens';
+import { SplashScreen1,SplashScreen2 ,RestaurantsScreen,DiscountedOffersScreen,RestaurantDetailScreen,ItemDetailScreen,Checkout,HelpCenter} from '../../screens';
 import AuthNavigator from '../auth';
 import BottomTabNavigation from '../bottomTab';
 
@@ -54,6 +54,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name={'Checkout'}
         component={Checkout}
+        options={commonHeaderOptions}
+      />
+      <Stack.Screen
+        name={'HelpCenter'}
+        component={HelpCenter}
         options={commonHeaderOptions}
       />
     </Stack.Navigator>

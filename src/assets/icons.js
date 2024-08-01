@@ -57,6 +57,7 @@ import Notes from '../assets/svgs/notes.svg';
 import Voucher from '../assets/svgs/voucher.svg';
 import Trophy from '../assets/svgs/trophy.svg';
 import Gift from '../assets/svgs/gift.svg';
+import MailIconYellow from '../assets/svgs/MailIconYellow.svg';
 
 export default {
   BG1,
@@ -117,5 +118,6 @@ export default {
   Notes,
   Voucher,
   Trophy,
-  Gift
+  Gift,
+  MailIconYellow
 };

@@ -75,7 +75,10 @@ const Account = () => {
             </View>
             <Icons.RightGrayDropDown />
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.item}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('HelpCenter')}
+            activeOpacity={0.8}
+            style={styles.item}>
             <View style={styles.itemRow}>
               <Icons.Help />
               <Text style={styles.itemTitle}>Help center</Text>
