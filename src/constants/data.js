@@ -221,3 +221,12 @@ export const orderSteps = [
   {title: 'Order Picked up', time: '7:12pm'},
   {title: 'Order delivered', time: '7:15pm'},
 ];
+export const deliveryOptions = [
+  {
+    title: 'Home delivery',
+    time: '15 - 20 mins',
+    date: 'Wed, 12 Jun',
+    price: ' Rs 100.00',
+  },
+  {title: 'Pickup', time: '15 - 20 mins', date: 'Wed, 12 Jun', price: ''},
+];

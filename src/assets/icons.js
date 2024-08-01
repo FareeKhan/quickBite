@@ -43,6 +43,9 @@ import CrossIcon from '../assets/svgs/crossIcon.svg';
 import MsgIcon from '../assets/svgs/msgIcon.svg';
 import CallIcon from '../assets/svgs/callIcon.svg';
 import TickIcon from '../assets/svgs/tickIcon.svg';
+import DeleteIcon from '../assets/svgs/deleteIcon.svg';
+import Pizza from '../assets/svgs/Pizza.svg';
+import GrayDownArrow from '../assets/svgs/grayDownArrow.svg';
 
 export default {
   BG1,
@@ -89,5 +92,8 @@ export default {
   CrossIcon,
   MsgIcon,
   CallIcon,
-  TickIcon
+  TickIcon,
+  DeleteIcon,
+  Pizza,
+  GrayDownArrow
 };
