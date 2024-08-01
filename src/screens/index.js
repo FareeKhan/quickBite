@@ -23,6 +23,7 @@ import LiveOrders from "./userScreens/orders/LiveOrders";
 import AccountScreen from "./userScreens/account/Account";
 import HelpCenter from "./userScreens/account/HelpCenter";
 import Rewards from "./userScreens/account/Rewards";
+import Vouchers from "./userScreens/account/Vouchers";
 
 export {
     SplashScreen1,
@@ -43,5 +44,6 @@ export {
     LiveOrders,
     Checkout,
     HelpCenter,
-    Rewards
+    Rewards,
+    Vouchers
 }

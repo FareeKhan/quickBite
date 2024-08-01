@@ -105,7 +105,9 @@ const Account = () => {
             </View>
             <Icons.RightGrayDropDown />
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.item}>
+          <TouchableOpacity
+          onPress={()=>navigation.navigate('Vouchers')}
+           activeOpacity={0.8} style={styles.item}>
             <View style={styles.itemRow}>
               <Icons.Gift />
               <Text style={styles.itemTitle}>Vouchers</Text>

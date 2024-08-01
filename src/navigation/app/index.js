@@ -9,7 +9,8 @@ import {
   ItemDetailScreen,
   Checkout,
   HelpCenter,
-  Rewards
+  Rewards,
+  Vouchers
 } from '../../screens';
 import AuthNavigator from '../auth';
 import BottomTabNavigation from '../bottomTab';
@@ -74,6 +75,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name={'Rewards'}
         component={Rewards}
+        options={commonHeaderOptions}
+      />
+      <Stack.Screen
+        name={'Vouchers'}
+        component={Vouchers}
         options={commonHeaderOptions}
       />
     </Stack.Navigator>
