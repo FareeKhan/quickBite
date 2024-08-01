@@ -215,3 +215,9 @@ export const orderCancelOptions = [
   {title: 'Cancel the entire order'},
   {title: 'Call me and Confirm'},
 ];
+export const orderSteps = [
+  {title: 'Order Confirmed', time: '7:00pm'},
+  {title: 'Order being prepared', time: '7:10pm'},
+  {title: 'Order Picked up', time: '7:12pm'},
+  {title: 'Order delivered', time: '7:15pm'},
+];

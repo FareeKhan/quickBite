@@ -40,6 +40,9 @@ import Kababjees from '../assets/svgs/Kababjees.svg';
 import Burger from '../assets/svgs/Burger.svg';
 import DropdownRight from '../assets/svgs/dropdownRight.svg';
 import CrossIcon from '../assets/svgs/crossIcon.svg';
+import MsgIcon from '../assets/svgs/msgIcon.svg';
+import CallIcon from '../assets/svgs/callIcon.svg';
+import TickIcon from '../assets/svgs/tickIcon.svg';
 
 export default {
   BG1,
@@ -83,5 +86,8 @@ export default {
   Kababjees,
   Burger,
   DropdownRight,
-  CrossIcon
+  CrossIcon,
+  MsgIcon,
+  CallIcon,
+  TickIcon
 };

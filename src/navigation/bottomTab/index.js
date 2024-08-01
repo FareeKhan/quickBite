@@ -6,9 +6,9 @@ import Icons from '../../assets/icons';
 import {
   HomeScreen,
   MyCartScreen,
-  OrdersScreen,
   AccountScreen,
 } from '../../screens';
+import OrderNavigator from '../orders';
 
 const BottomTabNavigation = () => {
   const Tab = createBottomTabNavigator();
@@ -57,7 +57,7 @@ const BottomTabNavigation = () => {
       />
       <Tab.Screen
         name="Orders"
-        component={OrdersScreen}
+        component={OrderNavigator}
         options={{
           tabBarIcon: ({focused}) =>
             focused ? (

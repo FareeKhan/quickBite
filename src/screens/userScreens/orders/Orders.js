@@ -27,7 +27,12 @@ const Orders = () => {
           <Text style={styles.headerTitle}>Orders</Text>
         </View>
         <View style={styles.btnsContainer}>
-          <TouchableOpacity activeOpacity={0.8} style={styles.liveBtn}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('Orders', {screen: 'LiveOrders'})
+            }
+            activeOpacity={0.8}
+            style={styles.liveBtn}>
             <Text style={styles.liveBtnText}>Live Orders</Text>
           </TouchableOpacity>
           <TouchableOpacity activeOpacity={0.8} style={styles.discountBtn}>
@@ -92,6 +97,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent:"space-between"
   },
   liveBtn: {
     width: '50%',

@@ -17,6 +17,7 @@ import DiscountedOffersScreen from "./userScreens/home/DiscountedOffers";
 import MyCartScreen from "./userScreens/myCart/MyCart";
 // orders
 import OrdersScreen from "./userScreens/orders/Orders";
+import LiveOrders from "./userScreens/orders/LiveOrders";
 // account
 import AccountScreen from "./userScreens/account/Account";
 
@@ -35,5 +36,6 @@ export {
     DiscountedOffersScreen,
     MyCartScreen,
     OrdersScreen,
-    AccountScreen
+    AccountScreen,
+    LiveOrders
 }
