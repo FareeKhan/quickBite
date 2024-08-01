@@ -24,6 +24,7 @@ import AccountScreen from "./userScreens/account/Account";
 import HelpCenter from "./userScreens/account/HelpCenter";
 import Rewards from "./userScreens/account/Rewards";
 import Vouchers from "./userScreens/account/Vouchers";
+import Notifications from "./userScreens/account/Notifications";
 
 export {
     SplashScreen1,
@@ -45,5 +46,6 @@ export {
     Checkout,
     HelpCenter,
     Rewards,
-    Vouchers
+    Vouchers,
+    Notifications
 }

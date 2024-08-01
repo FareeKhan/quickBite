@@ -10,7 +10,8 @@ import {
   Checkout,
   HelpCenter,
   Rewards,
-  Vouchers
+  Vouchers,
+  Notifications
 } from '../../screens';
 import AuthNavigator from '../auth';
 import BottomTabNavigation from '../bottomTab';
@@ -80,6 +81,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name={'Vouchers'}
         component={Vouchers}
+        options={commonHeaderOptions}
+      />
+      <Stack.Screen
+        name={'Notifications'}
+        component={Notifications}
         options={commonHeaderOptions}
       />
     </Stack.Navigator>

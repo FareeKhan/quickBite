@@ -39,7 +39,9 @@ const Account = () => {
           </View>
         </View>
         <View style={styles.btnsContainer}>
-          <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+          <TouchableOpacity
+          onPress={()=>navigation.navigate('Notifications')}
+           activeOpacity={0.8} style={styles.btn}>
             <Icons.Notification />
             <Text style={styles.btnText}>Notifications</Text>
           </TouchableOpacity>

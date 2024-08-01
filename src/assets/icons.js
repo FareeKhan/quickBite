@@ -61,6 +61,7 @@ import MailIconYellow from '../assets/svgs/MailIconYellow.svg';
 import Ellipse1 from '../assets/svgs/Ellipse1.svg';
 import Ellipse2 from '../assets/svgs/Ellipse2.svg';
 import Onlineorder from '../assets/svgs/Onlineorder.svg';
+import settings from '../assets/svgs/Settings.svg';
 
 export default {
   BG1,
@@ -125,5 +126,6 @@ export default {
   MailIconYellow,
   Ellipse1,
   Ellipse2,
-  Onlineorder
+  Onlineorder,
+  settings
 };
