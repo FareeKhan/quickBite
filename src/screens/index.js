@@ -15,6 +15,7 @@ import ItemDetailScreen from "./userScreens/home/restaurant/ItemDetail";
 import DiscountedOffersScreen from "./userScreens/home/DiscountedOffers";
 // my cart
 import MyCartScreen from "./userScreens/myCart/MyCart";
+import Checkout from "./userScreens/myCart/Checkout";
 // orders
 import OrdersScreen from "./userScreens/orders/Orders";
 import LiveOrders from "./userScreens/orders/LiveOrders";
@@ -37,5 +38,6 @@ export {
     MyCartScreen,
     OrdersScreen,
     AccountScreen,
-    LiveOrders
+    LiveOrders,
+    Checkout
 }

@@ -153,7 +153,9 @@ const MyCart = () => {
           <Text style={styles.totalText}>Total</Text>
           <Text style={styles.totalPrice}>Rs 900.00</Text>
         </View>
-        <TouchableOpacity activeOpacity={0.8} style={styles.confirmOrderBtn}>
+        <TouchableOpacity
+        onPress={()=>navigation.navigate('Checkout')}
+         activeOpacity={0.8} style={styles.confirmOrderBtn}>
           <Text style={styles.confirmOrderBtnText}>Confirm Order</Text>
         </TouchableOpacity>
       </ScrollView>

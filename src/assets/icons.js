@@ -20,6 +20,7 @@ import OrdersIconA from '../assets/svgs/OrdersA.svg';
 import AccountIconA from '../assets/svgs/AccountA.svg';
 import HomeIconA from '../assets/svgs/HomeA.svg';
 import LocationIcon from '../assets/svgs/locationIcon.svg';
+import LocationYellowIcon from '../assets/svgs/locationYellow.svg';
 import DownArrow from '../assets/svgs/downArrow.svg';
 import HeartIcon from '../assets/svgs/heartIcon.svg';
 import SearchIcon from '../assets/svgs/searchIcon.svg';
@@ -70,6 +71,7 @@ export default {
   AccountIconA,
   HomeIconA,
   LocationIcon,
+  LocationYellowIcon,
   DownArrow,
   HeartIcon,
   SearchIcon,
