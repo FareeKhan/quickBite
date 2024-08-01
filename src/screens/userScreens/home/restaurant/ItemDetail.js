@@ -138,6 +138,7 @@ const ItemDetail = () => {
         {isOpened ? (
           <BottomSheetComponent
             onPressMenu={() => setisOpened(!isOpened)}
+            marginBottom={15}
             Component={() => (
               <>
                 <TouchableOpacity

@@ -7,6 +7,7 @@ const BottomSheetComponent = ({
   HEIGHT,
   setClose,
   BGSheetColor,
+  marginBottom
 }) => {
   const refRBSheet = useRef();
 
@@ -26,7 +27,7 @@ const BottomSheetComponent = ({
       animationType="slide"
       customStyles={{
         wrapper: {
-          backgroundColor: '#12141975',
+          backgroundColor: '#121419100',
         },
         container: {
           backgroundColor: BGSheetColor,
@@ -34,7 +35,7 @@ const BottomSheetComponent = ({
           height: HEIGHT ? HEIGHT : 320,
           width: '92%',
           alignSelf: 'center',
-          marginBottom: 15,
+          marginBottom: marginBottom,
         },
       }}>
       <Component />
