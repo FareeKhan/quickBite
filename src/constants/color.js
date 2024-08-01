@@ -6,5 +6,6 @@ export const Colors={
     darkBronze:'#4E3B01',
     gray:'#898989',
     EerieBlack:"#15191F",
-    black:'#000000'
+    black:'#000000',
+    red:'#FF3838'
 }

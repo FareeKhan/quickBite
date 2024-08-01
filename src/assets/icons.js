@@ -40,6 +40,7 @@ import PercentRound from '../assets/svgs/percentRound.svg';
 import Kababjees from '../assets/svgs/Kababjees.svg';
 import Burger from '../assets/svgs/Burger.svg';
 import DropdownRight from '../assets/svgs/dropdownRight.svg';
+import RightGrayDropDown from '../assets/svgs/RightGrayDropDown.svg';
 import CrossIcon from '../assets/svgs/crossIcon.svg';
 import MsgIcon from '../assets/svgs/msgIcon.svg';
 import CallIcon from '../assets/svgs/callIcon.svg';
@@ -47,6 +48,15 @@ import TickIcon from '../assets/svgs/tickIcon.svg';
 import DeleteIcon from '../assets/svgs/deleteIcon.svg';
 import Pizza from '../assets/svgs/Pizza.svg';
 import GrayDownArrow from '../assets/svgs/grayDownArrow.svg';
+import Notification from '../assets/svgs/Notification.svg';
+import CreditIcon from '../assets/svgs/creditIcon.svg';
+import Profile from '../assets/svgs/profile.svg';
+import Global from '../assets/svgs/global.svg';
+import Help from '../assets/svgs/help.svg';
+import Notes from '../assets/svgs/notes.svg';
+import Voucher from '../assets/svgs/voucher.svg';
+import Trophy from '../assets/svgs/trophy.svg';
+import Gift from '../assets/svgs/gift.svg';
 
 export default {
   BG1,
@@ -91,11 +101,21 @@ export default {
   Kababjees,
   Burger,
   DropdownRight,
+  RightGrayDropDown,
   CrossIcon,
   MsgIcon,
   CallIcon,
   TickIcon,
   DeleteIcon,
   Pizza,
-  GrayDownArrow
+  GrayDownArrow,
+  Notification,
+  CreditIcon,
+  Profile,
+  Global,
+  Help,
+  Notes,
+  Voucher,
+  Trophy,
+  Gift
 };
