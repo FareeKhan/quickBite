@@ -77,7 +77,7 @@ const Tracking = () => {
             </View>
             <View style={styles.stepContainer}>
               <TouchableOpacity activeOpacity={0.8} style={styles.stepButton}>
-                <Icons.TickIcon />
+                <Icons.tickIconGray />
               </TouchableOpacity>
               <View style={styles.stepTextContainer}>
                 <Text style={styles.stepTitle}>Order Picked up</Text>
@@ -89,7 +89,7 @@ const Tracking = () => {
             </View>
             <View style={styles.stepContainer}>
               <TouchableOpacity activeOpacity={0.8} style={styles.stepButton}>
-                <Icons.TickIcon />
+                <Icons.tickIconGray />
               </TouchableOpacity>
               <View style={styles.stepTextContainer}>
                 <Text style={styles.stepTitle}>Order delivered</Text>
@@ -105,6 +105,7 @@ const Tracking = () => {
             Note: Do not give OTP until you received your items.
           </Text>
           <TouchableOpacity
+          onPress={()=>navigation.navigate('Report')}
             activeOpacity={0.8}
             style={styles.cancelOrderButton}>
             <Text style={styles.cancelOrderButtonText}>Cancel Order</Text>

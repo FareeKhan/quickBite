@@ -10,6 +10,7 @@ import {
   Image,
   FlatList,
   ScrollView,
+  ImageBackground,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -113,11 +114,7 @@ const Home = () => {
                             </Text>
                           </TouchableOpacity>
                         </View>
-                        <Image
-                          source={item.image}
-                          resizeMode="cover"
-                          style={{height: 100, width: 120}}
-                        />
+                        {item.image}
                       </View>
                     </View>
                   )}
@@ -135,21 +132,15 @@ const Home = () => {
                   renderItem={({item}) => (
                     <TouchableOpacity
                       onPress={() => navigation.navigate(item.screen)}
-                      style={styles.shopCard}
                       activeOpacity={0.8}>
-                      <Icons.BG2
-                        style={styles.shopBackground}
-                        width={250}
-                        height={120}
-                      />
-                      <View style={styles.shopContent}>
-                        <Image
-                          source={item.image}
-                          resizeMode="cover"
-                          style={styles.shopImage}
-                        />
-                        <Text style={styles.shopTitle}>{item.title}</Text>
-                      </View>
+                      <ImageBackground
+                        style={{height: 130, width: 270,backgroundColor:Colors.EerieBlack,borderRadius:12,justifyContent:"center",alignItems:"center"}}
+                        source={require('../../../assets/images/BG.png')}>
+                        <View style={styles.shopContent}>
+                          {item.image}
+                          <Text style={styles.shopTitle}>{item.title}</Text>
+                        </View>
+                      </ImageBackground>
                     </TouchableOpacity>
                   )}
                 />
@@ -175,11 +166,7 @@ const Home = () => {
                               : Colors.EerieBlack,
                         },
                       ]}>
-                      <Image
-                        source={item.image}
-                        resizeMode="cover"
-                        style={styles.categoryImage}
-                      />
+                      {item.image}
                       <Text
                         style={[
                           styles.categoryTitle,
@@ -205,7 +192,11 @@ const Home = () => {
                 <TouchableOpacity
                   activeOpacity={0.8}
                   style={styles.viewAllContainer}>
-                  <Text style={styles.viewAllText}>View All</Text>
+                  <Text
+                    onPress={() => navigation.navigate('Restaurants')}
+                    style={styles.viewAllText}>
+                    View All
+                  </Text>
                   <Icons.RightArrow style={{top: 2}} />
                 </TouchableOpacity>
               </View>
@@ -217,9 +208,8 @@ const Home = () => {
                   contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
                   renderItem={({item}) => (
                     <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={()=>navigation.navigate('RestaurantDetail')}
-                    >
+                      activeOpacity={0.8}
+                      onPress={() => navigation.navigate('RestaurantDetail')}>
                       <Image
                         source={item.image}
                         resizeMode="cover"
@@ -356,11 +346,7 @@ const Home = () => {
                   contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
                   renderItem={({item}) => (
                     <View style={styles.brandCard}>
-                      <Image
-                        source={item.image}
-                        resizeMode="contain"
-                        style={styles.brandImage}
-                      />
+                      {item.image}
                       <View style={styles.brandInfo}>
                         <Text style={styles.brandTitle}>{item.title}</Text>
                         <View style={styles.brandRatingWrapper}>
@@ -519,20 +505,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: Colors.btnColor,
   },
-  shopCard: {
-    position: 'relative',
-  },
   shopBackground: {
     backgroundColor: Colors.EerieBlack,
     borderRadius: 12,
+    
   },
   shopContent: {
-    position: 'absolute',
     alignItems: 'center',
-    top: '18%',
-    // left: '27%',
     gap: 5,
-    alignSelf:"center"
   },
   shopImage: {
     height: 50,
@@ -549,10 +529,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 5,
-  },
-  categoryImage: {
-    height: 50,
-    width: 50,
   },
   categoryTitle: {
     fontFamily: 'Manrope-Medium',
@@ -624,10 +600,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     borderRadius: 25,
     gap: 10,
-  },
-  brandImage: {
-    height: 60,
-    width: 150,
+    height:140
   },
   brandInfo: {
     gap: 3,

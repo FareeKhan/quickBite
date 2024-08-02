@@ -1,16 +1,18 @@
+import Icons from '../assets/icons';
+
 export const deals = [
   {
     id: '1',
     title: 'Welcome Combo!',
     items: ['1x Double Patty Beef Burger', '1x Regular Fries'],
-    image: require('../assets/images/Deal/1.png'),
+    image:<Icons.Food/>,
     btnText: 'Order Now',
   },
   {
     id: '2',
     title: 'Free Delivery!',
     items: ['Get your favourite food at your doorstep with free delivery'],
-    image: require('../assets/images/Deal/1.png'),
+    image:<Icons.ThumbIcon height={120} width={120}/>,
     btnText: 'Order Food',
   },
 ];
@@ -19,13 +21,13 @@ export const shops = [
   {
     id: '1',
     title: 'All Restaurants',
-    image: require('../assets/images/Shop/1.png'),
+    image: <Icons.Restaurant/>,
     screen: 'Restaurants',
   },
   {
     id: '2',
     title: 'Discounted Offers',
-    image: require('../assets/images/Shop/2.png'),
+    image: <Icons.Pricetag/>,
     screen: 'DiscountedOffers',
   },
 ];
@@ -34,22 +36,22 @@ export const categories = [
   {
     id: '1',
     title: 'Burger',
-    image: require('../assets/images/Category/1.png'),
+    image:<Icons.Burger height={50} width={50}/>,
   },
   {
     id: '2',
     title: 'Pizza',
-    image: require('../assets/images/Category/2.png'),
+    image:<Icons.Pizza height={50} width={50}/>,
   },
   {
     id: '3',
     title: 'Sandwitch',
-    image: require('../assets/images/Category/3.png'),
+    image:<Icons.Sandwitch height={50} width={50}/>,
   },
   {
     id: '4',
     title: 'Pasta',
-    image: require('../assets/images/Category/4.png'),
+    image:<Icons.Pasta height={50} width={50}/>,
   },
 ];
 
@@ -57,19 +59,19 @@ export const brands = [
   {
     id: '1',
     title: 'Dominos Pizza',
-    image: require('../assets/images/Brands/2.png'),
+    image: <Icons.Dominos/>,
     time: '10 mins',
   },
   {
     id: '2',
     title: 'Kababjees',
-    image: require('../assets/images/Brands/3.png'),
+    image:<Icons.kababjeesSmall/>,
     time: '20 mins',
   },
   {
     id: '3',
     title: 'Hardees',
-    image: require('../assets/images/Brands/1.png'),
+    image: <Icons.Hardees/>,
     time: '15 mins',
   },
 ];
@@ -219,6 +221,11 @@ export const notificationOptions = [
   {title: 'Receive push notifications'},
   {title: 'Receive offers by email'},
   {title: 'Show floating icon'},
+];
+export const orderCancelReasons = [
+  {title: 'Rider is too far'},
+  {title: 'I don’t want food now'},
+  {title: 'Do not wish to answer'},
 ];
 export const languageOptions = [
   {title: 'English'},

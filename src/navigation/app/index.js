@@ -16,7 +16,8 @@ import {
   AddAddress,
   Favourites,
   Profile,
-  Tracking
+  Tracking,
+  Report
 } from '../../screens';
 import AuthNavigator from '../auth';
 import BottomTabNavigation from '../bottomTab';
@@ -116,6 +117,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name={'Tracking'}
         component={Tracking}
+        options={commonHeaderOptions}
+      />
+      <Stack.Screen
+        name={'Report'}
+        component={Report}
         options={commonHeaderOptions}
       />
     </Stack.Navigator>

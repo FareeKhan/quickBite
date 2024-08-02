@@ -35,6 +35,7 @@ import SearchYellow from '../assets/svgs/searchYellow.svg';
 import HeartYellowNF from '../assets/svgs/heartYellowNF.svg';
 import Share from '../assets/svgs/share.svg';
 import StarLarge from '../assets/svgs/Star.svg';
+import StarLargeBlack from '../assets/svgs/StarLargeBlack.svg';
 import ThumbIcon from '../assets/svgs/ThumbIcon.svg';
 import PercentRound from '../assets/svgs/percentRound.svg';
 import Kababjees from '../assets/svgs/Kababjees.svg';
@@ -64,6 +65,15 @@ import Onlineorder from '../assets/svgs/Onlineorder.svg';
 import settings from '../assets/svgs/Settings.svg';
 import PenIcon from '../assets/svgs/penIcon.svg';
 import LiveLocationIcon from '../assets/svgs/liveLocationIcon.svg';
+import tickIconGray from '../assets/svgs/tickIconGray.svg';
+import Food from '../assets/svgs/Food.svg';
+import Pricetag from '../assets/svgs/Pricetag.svg';
+import Restaurant from '../assets/svgs/Restaurant.svg';
+import Pasta from '../assets/svgs/Pasta.svg';
+import Sandwitch from '../assets/svgs/Sandwich.svg';
+import Dominos from '../assets/svgs/Dominos.svg';
+import Hardees from '../assets/svgs/Hardees.svg';
+import kababjeesSmall from '../assets/svgs/kababjeesSmall.svg';
 
 export default {
   BG1,
@@ -103,6 +113,7 @@ export default {
   HeartYellowNF,
   Share,
   StarLarge,
+  StarLargeBlack,
   ThumbIcon,
   PercentRound,
   Kababjees,
@@ -131,5 +142,14 @@ export default {
   Onlineorder,
   settings,
   PenIcon,
-  LiveLocationIcon
+  LiveLocationIcon,
+  tickIconGray,
+  Food,
+  Pricetag,
+  Restaurant,
+  Pasta,
+  Sandwitch,
+  Dominos,
+  Hardees,
+  kababjeesSmall
 };
