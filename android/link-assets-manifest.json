@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/fonts/Inter_24pt-Regular.ttf",
+      "sha1": "b9984093c0b2b612da5e58e4d4e1ba8c255353dc"
+    },
+    {
       "path": "src/assets/fonts/Manrope-Bold.ttf",
       "sha1": "a6b63c832d12337efb3123f47863f54472c81bf5"
     },

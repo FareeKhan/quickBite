@@ -19,6 +19,7 @@ import Checkout from "./userScreens/myCart/Checkout";
 // orders
 import OrdersScreen from "./userScreens/orders/Orders";
 import LiveOrders from "./userScreens/orders/LiveOrders";
+import Tracking from "./userScreens/orders/Tracking";
 // account
 import AccountScreen from "./userScreens/account/Account";
 import HelpCenter from "./userScreens/account/HelpCenter";
@@ -55,5 +56,6 @@ export {
     Address,
     AddAddress,
     Favourites,
-    Profile
+    Profile,
+    Tracking
 }

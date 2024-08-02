@@ -105,12 +105,12 @@ const Checkout = () => {
           <BottomSheetComponent
             onPressMenu={() => setisOpened(!isOpened)}
             BGSheetColor={Colors.EerieBlack}
-            HEIGHT={'75%'}
-            marginBottom={93}
+            HEIGHT={'95%'}
+            marginBottom={10}
             Component={() => (
               <>
                 <ImageBackground
-                  style={{width: '100%'}}
+                  style={{width: '100%',height:350}}
                   source={require('../../../assets/images/BG.png')}>
                   <TouchableOpacity
                     onPress={() => setisOpened(!isOpened)}
@@ -121,7 +121,7 @@ const Checkout = () => {
                   <Image
                     source={require('../../../assets/images/Whatsapp.png')}
                     resizeMode="cover"
-                    style={{alignSelf: 'center', marginBottom: 20}}
+                    style={{alignSelf: 'center', marginBottom: 40}}
                   />
                 </ImageBackground>
                 <Text style={styles.thankYouText}>THANK YOU</Text>
@@ -129,7 +129,9 @@ const Checkout = () => {
                 <Text style={styles.orderPlaceText}>
                   Your Order has been placed successfully{' '}
                 </Text>
-                <TouchableOpacity activeOpacity={0.8} style={styles.trackBtn}>
+                <TouchableOpacity
+                onPress={()=>navigation.navigate('Tracking')}
+                 activeOpacity={0.8} style={styles.trackBtn}>
                   <Text style={styles.trackBtnText}>Track Order</Text>
                 </TouchableOpacity>
               </>
@@ -371,13 +373,13 @@ const styles = StyleSheet.create({
     color: Colors.btnColor,
     fontSize: 30,
     textAlign: 'center',
-    marginTop: 10,
+    marginTop: 30,
   },
   orderSuccessText: {
     fontFamily: 'Manrope-Bold',
     color: Colors.btnColor,
     fontSize: 30,
-    marginTop: 10,
+    marginTop: 30,
     textAlign: 'center',
   },
   orderPlaceText: {
@@ -385,6 +387,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: Colors.white,
     textAlign: 'center',
-    marginTop: 10,
+    marginTop: 30,
   },
 });

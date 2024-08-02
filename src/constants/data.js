@@ -220,20 +220,26 @@ export const notificationOptions = [
   {title: 'Receive offers by email'},
   {title: 'Show floating icon'},
 ];
+export const languageOptions = [
+  {title: 'English'},
+  {title: 'Urdu'}
+];
 export const orderSteps = [
   {title: 'Order Confirmed', time: '7:00pm'},
   {title: 'Order being prepared', time: '7:10pm'},
   {title: 'Order Picked up', time: '7:12pm'},
   {title: 'Order delivered', time: '7:15pm'},
 ];
+
 export const deliveryOptions = [
   {
+    id:'1',
     title: 'Home delivery',
     time: '15 - 20 mins',
     date: 'Wed, 12 Jun',
     price: ' Rs 100.00',
   },
-  {title: 'Pickup', time: '15 - 20 mins', date: 'Wed, 12 Jun', price: ''},
+  {id:'2',title: 'Pickup', time: '15 - 20 mins', date: 'Wed, 12 Jun', price: ''},
 ];
 
 export const tasks = [

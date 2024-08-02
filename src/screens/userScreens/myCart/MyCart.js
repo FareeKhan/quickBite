@@ -109,7 +109,7 @@ const MyCart = () => {
                   borderBottomWidth:
                     index < deliveryOptions.length - 1 ? 0.2 : 0,
                 },
-              ]}>
+              ]}  key={index}>
               <TouchableOpacity
                 onPress={() => handleSelectOption(item)}
                 activeOpacity={0.8}

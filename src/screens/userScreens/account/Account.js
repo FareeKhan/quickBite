@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,11 +9,19 @@ import {
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
+import BottomSheetComponent from '../../../components/BottomSheetComponent';
+import {languageOptions} from '../../../constants/data';
 import {Colors} from '../../../constants/color';
 import Icons from '../../../assets/icons';
 
 const Account = () => {
+  const [isOpened, setisOpened] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
   const navigation = useNavigation();
+  
+  const handleSelectOption = item => {
+    setSelectedOption(item);
+  };
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -54,8 +62,9 @@ const Account = () => {
             <Text style={styles.btnText}>Addresses</Text>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress={()=>navigation.navigate('Favourites')}
-           activeOpacity={0.8} style={styles.btn}>
+            onPress={() => navigation.navigate('Favourites')}
+            activeOpacity={0.8}
+            style={styles.btn}>
             <Icons.HeartYellowNF height={32} width={31} />
             <Text style={styles.btnText}>Favourites</Text>
           </TouchableOpacity>
@@ -70,15 +79,68 @@ const Account = () => {
         <View style={{marginTop: 40}}>
           <Text style={styles.Title}>General</Text>
           <TouchableOpacity
-          onPress={()=>navigation.navigate('Profile')}
-           activeOpacity={0.8} style={styles.item}>
+            onPress={() => navigation.navigate('Profile')}
+            activeOpacity={0.8}
+            style={styles.item}>
             <View style={styles.itemRow}>
               <Icons.Profile />
               <Text style={styles.itemTitle}>Profile settings</Text>
             </View>
             <Icons.RightGrayDropDown />
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.item}>
+          {isOpened ? (
+            <BottomSheetComponent
+              onPressMenu={() => setisOpened(!isOpened)}
+              BGSheetColor={Colors.EerieBlack}
+              HEIGHT={'95%'}
+              marginBottom={10}
+              Component={() => (
+                <>
+                  <View style={{padding: 30}}>
+                    <View style={styles.BSHeader}>
+                      <TouchableOpacity
+                        style={[
+                          styles.backButton,
+                          {backgroundColor: Colors.BGColor},
+                        ]}
+                        onPress={() => setisOpened(!isOpened)}
+                        activeOpacity={0.8}>
+                        <Icons.Arrow />
+                      </TouchableOpacity>
+                      <Text style={styles.BSHeaderTitle}>Select Language</Text>
+                    </View>
+                    {languageOptions.map(item => (
+                      <TouchableOpacity
+                        onPress={() => handleSelectOption(item)}
+                        activeOpacity={0.8}
+                        style={styles.optionRow}>
+                        <View
+                          style={[
+                            styles.optionCircle,
+                            {
+                              backgroundColor:
+                                selectedOption === item && Colors.btnColor,
+                            },
+                          ]}>
+                          {selectedOption === item && (
+                            <View style={styles.optionInnerCircle} />
+                          )}
+                        </View>
+                        <Text style={styles.optionValue}>{item.title}</Text>
+                      </TouchableOpacity>
+                    ))}
+                  </View>
+                  <TouchableOpacity activeOpacity={0.8} style={styles.saveBtn}>
+                    <Text style={styles.saveBtnText}>Save</Text>
+                  </TouchableOpacity>
+                </>
+              )}
+            />
+          ) : null}
+          <TouchableOpacity
+            onPress={() => setisOpened(!isOpened)}
+            activeOpacity={0.8}
+            style={styles.item}>
             <View style={styles.itemRow}>
               <Icons.Global />
               <Text style={styles.itemTitle}>Language</Text>
@@ -154,6 +216,57 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingBottom: 10,
   },
+  saveBtn: {
+    backgroundColor: Colors.btnColor,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 15,
+    paddingVertical: 15,
+    position: 'absolute',
+    bottom: 20,
+    width: '80%',
+    alignSelf: 'center',
+  },
+  saveBtnText: {
+    color: Colors.darkBronze,
+    fontSize: 15,
+    fontFamily: 'Manrope-Bold',
+  },
+  BSHeader: {
+    flexDirection: 'row',
+    gap: 20,
+    borderBottomWidth: 0.5,
+    borderColor: '#89898975',
+    paddingBottom: 15,
+    marginBottom: 20,
+  },
+  BSHeaderTitle: {
+    fontFamily: 'Manrope-SemiBold',
+    fontSize: 17,
+    color: Colors.white,
+    top: 2,
+  },
+  optionCircle: {
+    height: 20,
+    width: 20,
+    borderWidth: 2,
+    borderColor: Colors.btnColor,
+    borderRadius: 50,
+    top: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  optionValue: {
+    fontFamily: 'Manrope-Medium',
+    fontSize: 15,
+    color: Colors.gray,
+  },
+  optionInnerCircle: {
+    height: 11,
+    width: 11,
+    backgroundColor: Colors.EerieBlack,
+    borderRadius: 50,
+  },
   backButton: {
     height: 40,
     width: 40,
@@ -171,6 +284,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  optionRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 20,
+    marginBottom: 30,
+    paddingHorizontal: 10,
   },
   creditRow: {
     flexDirection: 'row',
