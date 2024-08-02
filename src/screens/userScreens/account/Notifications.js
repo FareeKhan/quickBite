@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,12 +7,20 @@ import {
   ScrollView,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import BottomSheetComponent from '../../../components/BottomSheetComponent';
 import {useNavigation} from '@react-navigation/native';
+import {notificationOptions} from '../../../constants/data';
 import {Colors} from '../../../constants/color';
 import Icons from '../../../assets/icons';
 
 const Notifications = () => {
+  const [isOpened, setisOpened] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
   const navigation = useNavigation();
+
+  const handleSelectOption = item => {
+    setSelectedOption(item);
+  };
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -25,7 +33,56 @@ const Notifications = () => {
             <Icons.Arrow />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Notifications</Text>
-          <TouchableOpacity style={styles.iconContainer}>
+          {isOpened ? (
+            <BottomSheetComponent
+              onPressMenu={() => setisOpened(!isOpened)}
+              BGSheetColor={Colors.primary}
+              HEIGHT={'35%'}
+              marginBottom={460}
+              borderRadius={20}
+              Component={() => (
+                <View style={{padding: 30}}>
+                  <View style={styles.BSHeader}>
+                    <TouchableOpacity
+                      style={[
+                        styles.backButton,
+                        {backgroundColor: Colors.BGColor},
+                      ]}
+                      onPress={() => setisOpened(!isOpened)}
+                      activeOpacity={0.8}>
+                      <Icons.Arrow />
+                    </TouchableOpacity>
+                    <Text style={styles.BSHeaderTitle}>
+                      Notifications Settings
+                    </Text>
+                  </View>
+                  {notificationOptions.map(item => (
+                    <TouchableOpacity
+                      onPress={() => handleSelectOption(item)}
+                      activeOpacity={0.8}
+                      style={styles.optionRow}>
+                      <View
+                        style={[
+                          styles.optionCircle,
+                          {
+                            backgroundColor:
+                              selectedOption === item && Colors.btnColor,
+                          },
+                        ]}>
+                        {selectedOption === item && (
+                          <View style={styles.optionInnerCircle} />
+                        )}
+                      </View>
+                      <Text style={styles.optionValue}>{item.title}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              )}
+            />
+          ) : null}
+          <TouchableOpacity
+            onPress={() => setisOpened(!isOpened)}
+            style={styles.iconContainer}>
             <Icons.settings />
           </TouchableOpacity>
         </View>
@@ -58,6 +115,41 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 40,
   },
+  BSHeader: {
+    flexDirection: 'row',
+    gap: 20,
+    borderBottomWidth: 0.5,
+    borderColor: '#89898975',
+    paddingBottom: 15,
+    marginBottom: 20,
+  },
+  BSHeaderTitle: {
+    fontFamily: 'Manrope-SemiBold',
+    fontSize: 17,
+    color: Colors.white,
+    top: 2,
+  },
+  optionCircle: {
+    height: 20,
+    width: 20,
+    borderWidth: 2,
+    borderColor: Colors.btnColor,
+    borderRadius: 50,
+    top: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  optionValue: {
+    fontFamily: 'Manrope-Medium',
+    fontSize: 15,
+    color: Colors.gray,
+  },
+  optionInnerCircle: {
+    height: 11,
+    width: 11,
+    backgroundColor: Colors.EerieBlack,
+    borderRadius: 50,
+  },
   backButton: {
     height: 40,
     width: 40,
@@ -65,6 +157,13 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  optionRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 20,
+    marginBottom: 30,
+    paddingHorizontal: 10,
   },
   header: {
     flexDirection: 'row',

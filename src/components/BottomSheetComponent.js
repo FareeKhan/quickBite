@@ -7,7 +7,8 @@ const BottomSheetComponent = ({
   HEIGHT,
   setClose,
   BGSheetColor,
-  marginBottom
+  marginBottom,
+  borderRadius
 }) => {
   const refRBSheet = useRef();
 
@@ -31,7 +32,7 @@ const BottomSheetComponent = ({
         },
         container: {
           backgroundColor: BGSheetColor,
-          borderRadius: 15,
+          borderRadius:borderRadius?borderRadius: 15,
           height: HEIGHT ? HEIGHT : 320,
           width: '92%',
           alignSelf: 'center',

@@ -215,6 +215,11 @@ export const orderCancelOptions = [
   {title: 'Cancel the entire order'},
   {title: 'Call me and Confirm'},
 ];
+export const notificationOptions = [
+  {title: 'Receive push notifications'},
+  {title: 'Receive offers by email'},
+  {title: 'Show floating icon'},
+];
 export const orderSteps = [
   {title: 'Order Confirmed', time: '7:00pm'},
   {title: 'Order being prepared', time: '7:10pm'},
@@ -230,6 +235,7 @@ export const deliveryOptions = [
   },
   {title: 'Pickup', time: '15 - 20 mins', date: 'Wed, 12 Jun', price: ''},
 ];
+
 export const tasks = [
   {
     title: 'Task 01',
