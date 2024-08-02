@@ -40,12 +40,16 @@ const Account = () => {
         </View>
         <View style={styles.btnsContainer}>
           <TouchableOpacity
-          onPress={()=>navigation.navigate('Notifications')}
-           activeOpacity={0.8} style={styles.btn}>
+            onPress={() => navigation.navigate('Notifications')}
+            activeOpacity={0.8}
+            style={styles.btn}>
             <Icons.Notification />
             <Text style={styles.btnText}>Notifications</Text>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Address')}
+            activeOpacity={0.8}
+            style={styles.btn}>
             <Icons.LocationYellowIcon height={32} width={31} />
             <Text style={styles.btnText}>Addresses</Text>
           </TouchableOpacity>
@@ -108,8 +112,9 @@ const Account = () => {
             <Icons.RightGrayDropDown />
           </TouchableOpacity>
           <TouchableOpacity
-          onPress={()=>navigation.navigate('Vouchers')}
-           activeOpacity={0.8} style={styles.item}>
+            onPress={() => navigation.navigate('Vouchers')}
+            activeOpacity={0.8}
+            style={styles.item}>
             <View style={styles.itemRow}>
               <Icons.Gift />
               <Text style={styles.itemTitle}>Vouchers</Text>

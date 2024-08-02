@@ -11,7 +11,8 @@ import {
   HelpCenter,
   Rewards,
   Vouchers,
-  Notifications
+  Notifications,
+  Address
 } from '../../screens';
 import AuthNavigator from '../auth';
 import BottomTabNavigation from '../bottomTab';
@@ -86,6 +87,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name={'Notifications'}
         component={Notifications}
+        options={commonHeaderOptions}
+      />
+      <Stack.Screen
+        name={'Address'}
+        component={Address}
         options={commonHeaderOptions}
       />
     </Stack.Navigator>
