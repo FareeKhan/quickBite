@@ -26,6 +26,7 @@ import Rewards from "./userScreens/account/Rewards";
 import Vouchers from "./userScreens/account/Vouchers";
 import Notifications from "./userScreens/account/Notifications";
 import Address from "./userScreens/account/Address";
+import AddAddress from "./userScreens/account/AddAddress";
 
 export {
     SplashScreen1,
@@ -49,5 +50,6 @@ export {
     Rewards,
     Vouchers,
     Notifications,
-    Address
+    Address,
+    AddAddress
 }

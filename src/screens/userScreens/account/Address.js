@@ -24,7 +24,9 @@ const Address = () => {
         <Text style={styles.noaddress}>
           You haven’t saved any address yet. Add new address to get started
         </Text>
-        <TouchableOpacity activeOpacity={0.8} style={styles.addressBtn}>
+        <TouchableOpacity
+        onPress={()=>navigation.navigate('AddAddress')}
+         activeOpacity={0.8} style={styles.addressBtn}>
           <Text style={styles.addressBtnText}>Add New Address</Text>
         </TouchableOpacity>
       </View>

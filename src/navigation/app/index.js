@@ -12,7 +12,8 @@ import {
   Rewards,
   Vouchers,
   Notifications,
-  Address
+  Address,
+  AddAddress
 } from '../../screens';
 import AuthNavigator from '../auth';
 import BottomTabNavigation from '../bottomTab';
@@ -92,6 +93,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name={'Address'}
         component={Address}
+        options={commonHeaderOptions}
+      />
+      <Stack.Screen
+        name={'AddAddress'}
+        component={AddAddress}
         options={commonHeaderOptions}
       />
     </Stack.Navigator>
