@@ -27,6 +27,8 @@ import Vouchers from "./userScreens/account/Vouchers";
 import Notifications from "./userScreens/account/Notifications";
 import Address from "./userScreens/account/Address";
 import AddAddress from "./userScreens/account/AddAddress";
+import Favourites from "./userScreens/account/Favourites";
+import Profile from "./userScreens/account/Profile";
 
 export {
     SplashScreen1,
@@ -51,5 +53,7 @@ export {
     Vouchers,
     Notifications,
     Address,
-    AddAddress
+    AddAddress,
+    Favourites,
+    Profile
 }

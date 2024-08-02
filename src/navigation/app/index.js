@@ -13,7 +13,9 @@ import {
   Vouchers,
   Notifications,
   Address,
-  AddAddress
+  AddAddress,
+  Favourites,
+  Profile
 } from '../../screens';
 import AuthNavigator from '../auth';
 import BottomTabNavigation from '../bottomTab';
@@ -98,6 +100,16 @@ export default function AppNavigator() {
       <Stack.Screen
         name={'AddAddress'}
         component={AddAddress}
+        options={commonHeaderOptions}
+      />
+      <Stack.Screen
+        name={'Favourites'}
+        component={Favourites}
+        options={commonHeaderOptions}
+      />
+      <Stack.Screen
+        name={'Profile'}
+        component={Profile}
         options={commonHeaderOptions}
       />
     </Stack.Navigator>

@@ -53,7 +53,9 @@ const Account = () => {
             <Icons.LocationYellowIcon height={32} width={31} />
             <Text style={styles.btnText}>Addresses</Text>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+          <TouchableOpacity
+          onPress={()=>navigation.navigate('Favourites')}
+           activeOpacity={0.8} style={styles.btn}>
             <Icons.HeartYellowNF height={32} width={31} />
             <Text style={styles.btnText}>Favourites</Text>
           </TouchableOpacity>
@@ -67,7 +69,9 @@ const Account = () => {
         </View>
         <View style={{marginTop: 40}}>
           <Text style={styles.Title}>General</Text>
-          <TouchableOpacity activeOpacity={0.8} style={styles.item}>
+          <TouchableOpacity
+          onPress={()=>navigation.navigate('Profile')}
+           activeOpacity={0.8} style={styles.item}>
             <View style={styles.itemRow}>
               <Icons.Profile />
               <Text style={styles.itemTitle}>Profile settings</Text>

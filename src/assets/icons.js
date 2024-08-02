@@ -63,6 +63,7 @@ import Ellipse2 from '../assets/svgs/Ellipse2.svg';
 import Onlineorder from '../assets/svgs/Onlineorder.svg';
 import settings from '../assets/svgs/Settings.svg';
 import PenIcon from '../assets/svgs/penIcon.svg';
+import LiveLocationIcon from '../assets/svgs/liveLocationIcon.svg';
 
 export default {
   BG1,
@@ -129,5 +130,6 @@ export default {
   Ellipse2,
   Onlineorder,
   settings,
-  PenIcon
+  PenIcon,
+  LiveLocationIcon
 };
