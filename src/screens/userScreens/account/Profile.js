@@ -7,8 +7,10 @@ import {
   ScrollView,
   Image,
   TextInput,
+  Platform
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import ImagePicker from 'react-native-image-crop-picker';
 import {useNavigation} from '@react-navigation/native';
 import {Colors} from '../../../constants/color';
 import Icons from '../../../assets/icons';
@@ -19,6 +21,27 @@ const Profile = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phoneNo, setPhoneNo] = useState('');
+  const [avatarImage,setAvatarImage]=useState('');
+
+  const takeImageFromGallery = async () => {
+    try {
+      const res = await ImagePicker.openPicker({
+        width: 400,
+        height: 400,
+        cropping: true,
+        mediaType: 'photo',
+      });
+
+      if (res.path) {
+        setAvatarImage(res.path);
+      } else {
+        console.log('No image selected');
+      }
+    } catch (error) {
+      console.log('Error picking image:', error);
+    }
+  };
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -32,16 +55,18 @@ const Profile = () => {
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Profile</Text>
         </View>
-        <View style={styles.profilePictureContainer}>
+        <TouchableOpacity 
+        onPress={takeImageFromGallery}
+        activeOpacity={0.8} style={styles.profilePictureContainer}>
           <Image
-            source={require('../../../assets/images/userProfile.png')}
+            source={avatarImage ? { uri: avatarImage } : require('../../../assets/images/userProfile.png')}
             resizeMode="cover"
             style={styles.profileImage}
           />
           <TouchableOpacity activeOpacity={0.8} style={styles.editIcon}>
             <Icons.PenIcon />
           </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
         <View style={styles.accountInfoContainer}>
           <Text style={styles.accountName}>Account Name</Text>
           <Text style={styles.accountEmail}>demo@gmail.com</Text>
@@ -102,6 +127,9 @@ const Profile = () => {
             </View>
           </View>
         </View>
+        <TouchableOpacity activeOpacity={0.8} style={styles.updateBtn}>
+            <Text style={styles.updateBtnText}>Update</Text>
+          </TouchableOpacity>
         <Text style={styles.connectAccountsTitle}>Connect Accounts</Text>
         <View>
           <TouchableOpacity activeOpacity={0.8} style={styles.googleButton}>
@@ -123,6 +151,19 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.BGColor,
     paddingHorizontal: 20,
     paddingTop: 40,
+  },
+  updateBtn: {
+    backgroundColor: Colors.btnColor,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 15,
+    paddingVertical: 15,
+    marginTop: 30,
+  },
+  updateBtnText: {
+    color: Colors.darkBronze,
+    fontSize: 15,
+    fontFamily: 'Manrope-Bold',
   },
   headerContainer: {
     flexDirection: 'row',
@@ -210,7 +251,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Medium',
     fontSize: 17,
     color: Colors.white,
-    marginTop: 40,
+    marginTop: 30,
     marginBottom: 20,
   },
   googleButton: {
@@ -232,7 +273,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: Colors.btnColor,
     position: 'absolute',
-    bottom: '25%',
+    bottom: '35%',
     right: '6%',
   },
 });

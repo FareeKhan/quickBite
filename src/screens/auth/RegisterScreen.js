@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -16,6 +16,16 @@ import Icons from '../../assets/icons';
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
+  const [securePasswordEntry, setSecurePasswordEntry] = useState(true);
+  const [secureConfirmEntry, setSecureConfirmEntry] = useState(true);
+  
+  const toggleSecurePasswordEntry = () => {
+    setSecurePasswordEntry(!securePasswordEntry);
+  };
+  
+  const toggleSecureConfirmEntry = () => {
+    setSecureConfirmEntry(!secureConfirmEntry);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -64,8 +74,11 @@ const RegisterScreen = () => {
                 placeholder="Enter password"
                 placeholderTextColor={Colors.gray}
                 style={styles.textInput}
+                secureTextEntry={securePasswordEntry}
               />
-              <Icons.EyeIcon />
+              <TouchableOpacity activeOpacity={0.8} onPress={toggleSecurePasswordEntry}>
+                {securePasswordEntry ? <Icons.EyeOff /> : <Icons.EyeIcon />}
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.inputContainer}>
@@ -76,8 +89,11 @@ const RegisterScreen = () => {
                 placeholder="Enter confirm password"
                 placeholderTextColor={Colors.gray}
                 style={styles.textInput}
+                secureTextEntry={secureConfirmEntry}
               />
-              <Icons.EyeIcon />
+              <TouchableOpacity activeOpacity={0.8} onPress={toggleSecureConfirmEntry}>
+                {secureConfirmEntry ? <Icons.EyeOff /> : <Icons.EyeIcon />}
+              </TouchableOpacity>
             </View>
           </View>
           <TouchableOpacity activeOpacity={0.8} style={styles.registerBtn}>
@@ -159,7 +175,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 15,
     paddingVertical: 15,
-    marginTop:25
+    marginTop: 25,
   },
   registerBtnText: {
     color: Colors.darkBronze,

@@ -46,61 +46,72 @@ const LiveOrders = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.detailsContainer}>
-          <View style={styles.profileHeader}>
-            <View style={styles.profileInfo}>
-              <Image
-                source={require('../../../assets/images/userProfile.png')}
-                resizeMode="cover"
-                style={styles.profileImage}
-              />
-              <View>
-                <Text style={styles.profileName}>John</Text>
-                <View style={styles.ratingContainer}>
-                  <Icons.StarLarge height={15} width={15} />
-                  <Text style={styles.ratingText}>4.1/5.0</Text>
+        <FlatList
+          data={orderSteps}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
+          renderItem={({item}) => (
+             <TouchableOpacity
+             onPress={()=>navigation.navigate('Tracking')}
+             activeOpacity={0.8}
+              style={styles.detailsContainer}>
+              <View style={styles.profileHeader}>
+                <View style={styles.profileInfo}>
+                  <Image
+                    source={require('../../../assets/images/userProfile.png')}
+                    resizeMode="cover"
+                    style={styles.profileImage}
+                  />
+                  <View>
+                    <Text style={styles.profileName}>John</Text>
+                    <View style={styles.ratingContainer}>
+                      <Icons.StarLarge height={15} width={15} />
+                      <Text style={styles.ratingText}>4.1/5.0</Text>
+                    </View>
+                  </View>
+                </View>
+                <View style={styles.actionContainer}>
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    style={styles.actionButton}>
+                    <Icons.MsgIcon />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    style={styles.actionButton}>
+                    <Icons.CallIcon />
+                  </TouchableOpacity>
                 </View>
               </View>
-            </View>
-            <View style={styles.actionContainer}>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.actionButton}>
-                <Icons.MsgIcon />
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.actionButton}>
-                <Icons.CallIcon />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.orderStepsContainer}>
-            <FlatList
-              data={orderSteps}
-              showsVerticalScrollIndicator={false}
-              renderItem={({item, index}) => (
-                <View style={styles.stepContainer}>
-                  <View>
-                    <TouchableOpacity
-                      activeOpacity={0.8}
-                      style={styles.stepIcon}>
-                      <Icons.TickIcon />
-                    </TouchableOpacity>
-                    {index < orderSteps.length - 1 && (
-                      <View style={styles.dashLine} />
-                    )}
-                  </View>
-                  <View style={styles.stepTextContainer}>
-                    <Text style={styles.stepTitle}>{item.title}</Text>
-                    <Text style={styles.stepTime}>{item.time}</Text>
-                  </View>
-                </View>
-              )}
-            />
-            <Text style={styles.dateText}>6-13-2024</Text>
-          </View>
-        </View>
+              <View style={styles.orderStepsContainer}>
+                <FlatList
+                  data={orderSteps}
+                  showsVerticalScrollIndicator={false}
+                  renderItem={({item, index}) => (
+                    <View style={styles.stepContainer}>
+                      <View>
+                        <TouchableOpacity
+                          activeOpacity={0.8}
+                          style={styles.stepIcon}>
+                          <Icons.TickIcon />
+                        </TouchableOpacity>
+                        {index < orderSteps.length - 1 && (
+                          <View style={styles.dashLine} />
+                        )}
+                      </View>
+                      <View style={styles.stepTextContainer}>
+                        <Text style={styles.stepTitle}>{item.title}</Text>
+                        <Text style={styles.stepTime}>{item.time}</Text>
+                      </View>
+                    </View>
+                  )}
+                />
+                <Text style={styles.dateText}>6-13-2024</Text>
+              </View>
+            </TouchableOpacity>
+          )}
+        />
       </ImageBackground>
     </SafeAreaView>
   );
@@ -123,7 +134,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap:100
+    gap: 100,
   },
   backButton: {
     height: 40,
@@ -150,7 +161,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.btnColor,
     borderRadius: 12,
     paddingVertical: 15,
-    zIndex:1
+    zIndex: 1,
   },
   liveBtnText: {
     fontFamily: 'Manrope-SemiBold',
@@ -175,12 +186,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: Colors.EerieBlack,
     padding: 20,
-    position: 'absolute',
-    bottom: 10,
-    zIndex: 1,
-    marginHorizontal: 20,
-    width: '90%',
-    alignSelf: 'center',
+    marginTop:90,
+    marginBottom:20
   },
   profileHeader: {
     flexDirection: 'row',

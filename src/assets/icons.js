@@ -4,9 +4,16 @@ import AppIcon from '../assets/svgs/AppIcon.svg';
 import SheildIcon from '../assets/svgs/ShieldIcon.svg';
 import Arrow from '../assets/svgs/Arrow.svg';
 import LockIcon from '../assets/svgs/LockIcon.svg';
+import LockIconRed from '../assets/svgs/LockIconRed.svg';
+import LockIconYellow from '../assets/svgs/LockIconYellow.svg';
 import MailIcon from '../assets/svgs/MailIcon.svg';
 import GoogleIcon from '../assets/svgs/GoogleIcon.svg';
 import EyeIcon from '../assets/svgs/EyeIcon.svg';
+import EyeIconYellow from '../assets/svgs/EyeIconYellow.svg';
+import EyeIconRed from '../assets/svgs/EyeIconRed.svg';
+import EyeOff from '../assets/svgs/EyeOff.svg';
+import EyeOffYellow from '../assets/svgs/EyeOffYellow.svg';
+import EyeOffRed from '../assets/svgs/EyeOffRed.svg';
 import UserPlusIcon from '../assets/svgs/UserPlusIcon.svg';
 import UserIcon from '../assets/svgs/UserIcon.svg';
 import LockLarge from '../assets/svgs/LockLarge.svg';
@@ -43,6 +50,7 @@ import Burger from '../assets/svgs/Burger.svg';
 import DropdownRight from '../assets/svgs/dropdownRight.svg';
 import RightGrayDropDown from '../assets/svgs/RightGrayDropDown.svg';
 import CrossIcon from '../assets/svgs/crossIcon.svg';
+import CrossIconRed from '../assets/svgs/crossIconRed.svg';
 import MsgIcon from '../assets/svgs/msgIcon.svg';
 import CallIcon from '../assets/svgs/callIcon.svg';
 import TickIcon from '../assets/svgs/tickIcon.svg';
@@ -59,6 +67,7 @@ import Voucher from '../assets/svgs/voucher.svg';
 import Trophy from '../assets/svgs/trophy.svg';
 import Gift from '../assets/svgs/gift.svg';
 import MailIconYellow from '../assets/svgs/MailIconYellow.svg';
+import MailIconRed from '../assets/svgs/MailIconRed.svg';
 import Ellipse1 from '../assets/svgs/Ellipse1.svg';
 import Ellipse2 from '../assets/svgs/Ellipse2.svg';
 import Onlineorder from '../assets/svgs/Onlineorder.svg';
@@ -82,9 +91,16 @@ export default {
   SheildIcon,
   Arrow,
   LockIcon,
+  LockIconYellow,
+  LockIconRed,
   MailIcon,
   GoogleIcon,
   EyeIcon,
+  EyeIconYellow,
+  EyeIconRed,
+  EyeOff,
+  EyeOffYellow,
+  EyeOffRed,
   UserPlusIcon,
   UserIcon,
   LockLarge,
@@ -121,6 +137,7 @@ export default {
   DropdownRight,
   RightGrayDropDown,
   CrossIcon,
+  CrossIconRed,
   MsgIcon,
   CallIcon,
   TickIcon,
@@ -137,6 +154,7 @@ export default {
   Trophy,
   Gift,
   MailIconYellow,
+  MailIconRed,
   Ellipse1,
   Ellipse2,
   Onlineorder,

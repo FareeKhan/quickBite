@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,6 +7,7 @@ import {
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
+  Alert,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -15,7 +16,30 @@ import {Colors} from '../../constants/color';
 import Icons from '../../assets/icons';
 
 const LoginScreen = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [isCredentialsCorrect, setIsCredentialsCorrect] = useState(true);
   const navigation = useNavigation();
+
+  const toggleSecureEntry = () => {
+    setSecureTextEntry(!secureTextEntry);
+  };
+
+  const handleLogin = () => {
+    const isValidEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+      email,
+    );
+    const isValidPassword = password.length >= 8;
+
+    if (isValidEmail && isValidPassword) {
+      setIsCredentialsCorrect(true);
+      navigation.navigate('BottomTabNavigation');
+    } else {
+      setIsCredentialsCorrect(false);
+      Alert.alert('Email is required')
+    }
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -23,12 +47,37 @@ const LoginScreen = () => {
         <KeyboardAwareScrollView
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled">
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => navigation.goBack()}
-            activeOpacity={0.8}>
-            <Icons.Arrow />
-          </TouchableOpacity>
+          <View style={{flexDirection: 'row', alignItems: 'center', gap: 15}}>
+            <TouchableOpacity
+              style={styles.backButton}
+              onPress={() => navigation.goBack()}
+              activeOpacity={0.8}>
+              <Icons.Arrow />
+            </TouchableOpacity>
+            {!isCredentialsCorrect && (
+              <View
+                style={{flexDirection: 'row', alignItems: 'center', gap: 15}}>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  style={{
+                    padding: 7,
+                    borderWidth: 1.5,
+                    borderColor: Colors.red,
+                    borderRadius: 50,
+                  }}>
+                  <Icons.CrossIconRed height={12} width={12} />
+                </TouchableOpacity>
+                <Text
+                  style={{
+                    fontFamily: 'Manrope-Medium',
+                    fontSize: 15,
+                    color: Colors.gray,
+                  }}>
+                  Invalid email address or password
+                </Text>
+              </View>
+            )}
+          </View>
           <View style={styles.iconContainer}>
             <Icons.SheildIcon />
           </View>
@@ -36,25 +85,96 @@ const LoginScreen = () => {
           <Text style={styles.subtitle}>Login to continue using the app</Text>
           <View style={styles.inputContainer}>
             <Text style={styles.inputLabel}>Email Address</Text>
-            <View style={styles.inputWrapper}>
-              <Icons.MailIcon />
+            <View
+              style={[
+                styles.inputWrapper,
+                {
+                  borderWidth: email ? 0.5 : 0,
+                  borderColor: isCredentialsCorrect
+                    ? Colors.btnColor
+                    : Colors.red,
+                },
+              ]}>
+              {email && isCredentialsCorrect ? (
+                <Icons.MailIconYellow />
+              ) : !isCredentialsCorrect ? (
+                <Icons.MailIconRed />
+              ) : (
+                <Icons.MailIcon />
+              )}
               <TextInput
                 placeholder="Enter your email address"
                 placeholderTextColor={Colors.gray}
-                style={styles.textInput}
+                style={[
+                  styles.textInput,
+                  {
+                    color:
+                      email && isCredentialsCorrect
+                        ? Colors.btnColor
+                        : !isCredentialsCorrect
+                        ? Colors.red
+                        : Colors.gray,
+                  },
+                ]}
+                value={email}
+                onChangeText={email => setEmail(email)}
               />
             </View>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.inputLabel}>Password</Text>
-            <View style={styles.inputWrapper}>
-              <Icons.LockIcon />
+            <View
+              style={[
+                styles.inputWrapper,
+                {
+                  borderWidth: password ? 0.5 : 0,
+                  borderColor: isCredentialsCorrect
+                    ? Colors.btnColor
+                    : Colors.red,
+                },
+              ]}>
+              {password && isCredentialsCorrect ? (
+                <Icons.LockIconYellow />
+              ) : !isCredentialsCorrect ? (
+                <Icons.LockIconRed />
+              ) : (
+                <Icons.LockIcon />
+              )}
               <TextInput
                 placeholder="Enter password"
                 placeholderTextColor={Colors.gray}
-                style={styles.textInput}
+                style={[
+                  styles.textInput,
+                  {
+                    color:
+                      password && isCredentialsCorrect
+                        ? Colors.btnColor
+                        : !isCredentialsCorrect
+                        ? Colors.red
+                        : Colors.gray,
+                  },
+                ]}
+                value={password}
+                onChangeText={password => setPassword(password)}
+                secureTextEntry={secureTextEntry}
               />
-              <Icons.EyeIcon />
+              <TouchableOpacity onPress={toggleSecureEntry}>
+                {secureTextEntry ? (
+                  password && isCredentialsCorrect ? (
+                    <Icons.EyeOffYellow />
+                  ) : !isCredentialsCorrect ? (
+                    <Icons.EyeOffRed />
+                  ) : (
+                    <Icons.EyeOff />
+                  )
+                ) : password && isCredentialsCorrect ? (
+                  <Icons.EyeIconYellow />
+                ) : !isCredentialsCorrect ? (
+                  <Icons.EyeIconRed />
+                ) : (
+                  <Icons.EyeIcon />
+                )}
+              </TouchableOpacity>
             </View>
           </View>
           <Text
@@ -65,15 +185,37 @@ const LoginScreen = () => {
             Forget Password?
           </Text>
           <TouchableOpacity
-          onPress={()=>navigation.navigate('BottomTabNavigation')}
-           activeOpacity={0.8} style={styles.loginButton}>
-            <Text style={styles.loginButtonText}>Login</Text>
+            onPress={handleLogin}
+            activeOpacity={0.8}
+            style={[
+              styles.loginButton,
+              {
+                backgroundColor:
+                  email && password && isCredentialsCorrect
+                    ? Colors.btnColor
+                    : Colors.primary,
+              },
+            ]}>
+            <Text
+              style={[
+                styles.loginButtonText,
+                {
+                  color:
+                    email && password && isCredentialsCorrect
+                      ? Colors.darkBronze
+                      : Colors.gray,
+                },
+              ]}>
+              Login
+            </Text>
           </TouchableOpacity>
           <Text style={styles.createAccount}>
             Don’t have an account?{'  '}
             <Text
               onPress={() => navigation.navigate('Auth', {screen: 'Register'})}
-              style={styles.createAccountLink}>
+              style={{
+                color: isCredentialsCorrect ? Colors.white : Colors.btnColor,
+              }}>
               Create
             </Text>
           </Text>
@@ -155,7 +297,6 @@ const styles = StyleSheet.create({
   textInput: {
     fontSize: 13,
     fontFamily: 'Manrope-Medium',
-    color: Colors.gray,
     width: '80%',
   },
   forgotPassword: {
@@ -166,14 +307,12 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   loginButton: {
-    backgroundColor: Colors.btnColor,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 15,
     paddingVertical: 15,
   },
   loginButtonText: {
-    color: Colors.darkBronze,
     fontSize: 15,
     fontFamily: 'Manrope-Bold',
   },
@@ -184,9 +323,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: Colors.gray,
   },
-  createAccountLink: {
-    color: Colors.white,
-  },
+
   orContainer: {
     paddingVertical: 30,
     flexDirection: 'row',

@@ -16,7 +16,18 @@ import Icons from '../../../assets/icons';
 const Notifications = () => {
   const [isOpened, setisOpened] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [showUnread, setShowUnread] = useState(true); 
   const navigation = useNavigation();
+
+  const notifications = [
+    { id: 1, title: 'Your item has been shipped.', read: false },
+    { id: 2, title: 'Your delivery is scheduled.', read: true },
+    { id: 3, title: 'Your order has been delivered.', read: false },
+  ];
+
+  const filteredNotifications = notifications.filter(
+    (notification) => notification.read !== !showUnread
+  );
 
   const handleSelectOption = item => {
     setSelectedOption(item);
@@ -87,19 +98,43 @@ const Notifications = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.btnsContainer}>
-          <TouchableOpacity activeOpacity={0.8} style={styles.unReadBtn}>
-            <Text style={styles.unReadBtnText}>Unread</Text>
+        <TouchableOpacity
+            activeOpacity={0.8}
+            style={[
+              styles.unReadBtn,
+              { backgroundColor: showUnread ? Colors.btnColor : Colors.EerieBlack },
+            ]}
+            onPress={() => setShowUnread(true)}
+          >
+            <Text style={[
+              styles.unReadBtnText,
+              { color: showUnread ? Colors.darkBronze : Colors.gray },
+            ]}>Unread</Text>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.readBtn}>
-            <Text style={styles.readBtnText}>Read</Text>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={[
+              styles.readBtn,
+              { backgroundColor: !showUnread ? Colors.btnColor : Colors.EerieBlack },
+            ]}
+            onPress={() => setShowUnread(false)}
+          >
+            <Text style={[
+              styles.readBtnText,
+              { color: !showUnread ? Colors.darkBronze : Colors.gray },
+            ]}>Read</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.deliveryContainer}>
-          <Text style={styles.deliveryTitle}>Delivery notification</Text>
-          <Text style={styles.deliveryDes}>
-            Your item has been delivered. Please check your items before telling
-            the OTP to Rider.
-          </Text>
+          {filteredNotifications.length > 0 ? (
+            filteredNotifications.map((notification) => (
+              <Text key={notification.id} style={styles.deliveryDes}>
+                {notification.title}
+              </Text>
+            ))
+          ) : (
+            <Text style={styles.deliveryDes}>No notifications available.</Text>
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -196,25 +231,25 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.EerieBlack,
     borderRadius: 12,
     paddingVertical: 12,
+    zIndex:0
   },
   unReadBtnText: {
     fontFamily: 'Manrope-SemiBold',
     fontSize: 15,
-    color: Colors.gray,
   },
   readBtn: {
     width: '53%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Colors.btnColor,
+    backgroundColor: Colors.EerieBlack,
     borderRadius: 12,
     paddingVertical: 12,
     marginLeft: -10,
   },
   readBtnText: {
     fontFamily: 'Manrope-Bold',
-    color: Colors.darkBronze,
     fontSize: 15,
+  
   },
   deliveryContainer: {
     marginTop: 20,
@@ -223,6 +258,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.EerieBlack,
     borderRadius: 12,
     gap: 20,
+    marginBottom:20
   },
   deliveryTitle: {
     fontFamily: 'Manrope-SemiBold',

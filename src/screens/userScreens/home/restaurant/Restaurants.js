@@ -46,7 +46,9 @@ const Restaurants = () => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{gap: 15, paddingVertical: 40}}
           renderItem={({item, index}) => (
-            <View>
+            <TouchableOpacity 
+            onPress={()=>navigation.navigate('RestaurantDetail')}
+            activeOpacity={0.8}>
               <Image
                 source={item.image}
                 resizeMode="cover"
@@ -78,7 +80,7 @@ const Restaurants = () => {
                   <Icons.HeartIcon />
                 )}
               </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
           )}
         />
       </ScrollView>

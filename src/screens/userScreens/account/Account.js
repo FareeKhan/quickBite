@@ -91,9 +91,9 @@ const Account = () => {
           {isOpened ? (
             <BottomSheetComponent
               onPressMenu={() => setisOpened(!isOpened)}
-              BGSheetColor={Colors.EerieBlack}
-              HEIGHT={'95%'}
-              marginBottom={10}
+              BGSheetColor={Colors.primary}
+              HEIGHT={'60%'}
+              marginBottom={205}
               Component={() => (
                 <>
                   <View style={{padding: 30}}>
@@ -130,7 +130,9 @@ const Account = () => {
                       </TouchableOpacity>
                     ))}
                   </View>
-                  <TouchableOpacity activeOpacity={0.8} style={styles.saveBtn}>
+                  <TouchableOpacity
+                  onPress={()=>setisOpened(!isOpened)}
+                   activeOpacity={0.8} style={styles.saveBtn}>
                     <Text style={styles.saveBtnText}>Save</Text>
                   </TouchableOpacity>
                 </>

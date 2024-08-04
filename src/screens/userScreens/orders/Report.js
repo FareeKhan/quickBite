@@ -56,7 +56,9 @@ const Report = () => {
               <Text style={styles.optionValue}>{item.title}</Text>
             </TouchableOpacity>
           ))}
-          <TouchableOpacity activeOpacity={0.8} style={styles.orderCancelBtn}>
+          <TouchableOpacity 
+          onPress={()=>navigation.navigate('BottomTabNavigation',{screen:'Home'})}
+          activeOpacity={0.8} style={styles.orderCancelBtn}>
             <Text style={styles.orderCancelBtnText}>Cancel Order</Text>
           </TouchableOpacity>
         </View>

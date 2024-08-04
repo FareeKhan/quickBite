@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ import {
   Image,
   FlatList,
   ScrollView,
-  ImageBackground,
+  LogBox,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -24,16 +24,38 @@ import {
   categories,
   restaurants,
   brands,
-  popular,
+  Popular,
+  HotAndSpicy
 } from '../../../constants/data';
 
 const Home = () => {
   const navigation = useNavigation();
+  const [popular, setPopular] = useState(Popular);
+  const [hotAndSpicy, setHotAndSpicy] = useState(HotAndSpicy);
   const [selectedCategory, setSelectedCategory] = useState(0);
+
+  const handlePopularQtyChange = (index, newQty) => {
+    if (newQty >= 0) {
+      const updatedProducts = [...popular];
+      updatedProducts[index].qty = newQty;
+      setPopular(updatedProducts);
+    }
+  };
+  const handleHotAndSpicyQtyChange = (index, newQty) => {
+    if (newQty >= 0) {
+      const updatedProducts = [...hotAndSpicy];
+      updatedProducts[index].qty = newQty;
+      setHotAndSpicy(updatedProducts);
+    }
+  };
 
   const handleCategoryPress = index => {
     setSelectedCategory(index === selectedCategory ? -1 : index);
   };
+
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, []);
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -48,7 +70,9 @@ const Home = () => {
                 <Text style={styles.locationText}>Hyderabad, Sindh</Text>
                 <Icons.DownArrow />
               </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.8} style={styles.heartBtn}>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate('Favourites')}
+               activeOpacity={0.8} style={styles.heartBtn}>
                 <Icons.HeartIcon />
               </TouchableOpacity>
             </View>
@@ -63,7 +87,10 @@ const Home = () => {
               </View>
               <Icons.FilterIcon />
             </View>
-            <View style={styles.section}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Tracking')}
+              activeOpacity={0.8}
+              style={styles.section}>
               <View style={styles.trackingCard}>
                 <View style={styles.trackingRow}>
                   <Text style={styles.trackingTitle}>Order Tracking</Text>
@@ -85,7 +112,7 @@ const Home = () => {
                   thumbImage={require('../../../assets/images/ThumbImage.png')}
                 />
               </View>
-            </View>
+            </TouchableOpacity>
             <View style={styles.section}>
               <Text style={styles.sectionTitleText}>Today’s Deal</Text>
               <View style={styles.dealContainer}>
@@ -126,21 +153,29 @@ const Home = () => {
               <View style={{marginTop: 20}}>
                 <FlatList
                   data={shops}
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
+                  showsVerticalScrollIndicator={false}
+                  numColumns={2}
+                  columnWrapperStyle={{gap: 15, paddingHorizontal: 20}}
                   renderItem={({item}) => (
                     <TouchableOpacity
                       onPress={() => navigation.navigate(item.screen)}
                       activeOpacity={0.8}>
-                      <ImageBackground
-                        style={{height: 130, width: 270,backgroundColor:Colors.EerieBlack,borderRadius:12,justifyContent:"center",alignItems:"center"}}
-                        source={require('../../../assets/images/BG.png')}>
-                        <View style={styles.shopContent}>
-                          {item.image}
-                          <Text style={styles.shopTitle}>{item.title}</Text>
-                        </View>
-                      </ImageBackground>
+                      <Image
+                        style={{
+                          height: 120,
+                          width: 170,
+                          backgroundColor: Colors.EerieBlack,
+                          borderRadius: 20,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                        resizeMode="contain"
+                        source={require('../../../assets/images/BG.png')}
+                      />
+                      <View style={styles.shopContent}>
+                        {item.image}
+                        <Text style={styles.shopTitle}>{item.title}</Text>
+                      </View>
                     </TouchableOpacity>
                   )}
                 />
@@ -190,13 +225,10 @@ const Home = () => {
                   Restaurants near you
                 </Text>
                 <TouchableOpacity
+                  onPress={() => navigation.navigate('Restaurants')}
                   activeOpacity={0.8}
                   style={styles.viewAllContainer}>
-                  <Text
-                    onPress={() => navigation.navigate('Restaurants')}
-                    style={styles.viewAllText}>
-                    View All
-                  </Text>
+                  <Text style={styles.viewAllText}>View All</Text>
                   <Icons.RightArrow style={{top: 2}} />
                 </TouchableOpacity>
               </View>
@@ -256,8 +288,10 @@ const Home = () => {
                   horizontal
                   showsHorizontalScrollIndicator={false}
                   contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
-                  renderItem={({item}) => (
-                    <>
+                  renderItem={({item, index}) => (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('ItemDetail')}
+                      activeOpacity={0.8}>
                       <View style={{paddingTop: 30}}>
                         <View style={styles.itemCard}>
                           <View style={styles.itemTextContainer}>
@@ -268,13 +302,23 @@ const Home = () => {
                             <Text style={styles.itemPrice}>{item.price}</Text>
                           </View>
                           <View style={styles.qtyContainer}>
-                            <View style={styles.qtyIconContainer}>
+                            <TouchableOpacity
+                              onPress={() =>
+                                handlePopularQtyChange(index, item.qty - 1)
+                              }
+                              activeOpacity={0.8}
+                              style={styles.qtyIconContainer}>
                               <Icons.MinusIcon />
-                            </View>
-                            <Text style={styles.itemQuantity}>1</Text>
-                            <View style={styles.qtyIconContainer}>
+                            </TouchableOpacity>
+                            <Text style={styles.itemQuantity}>{item.qty}</Text>
+                            <TouchableOpacity
+                              onPress={() =>
+                                handlePopularQtyChange(index, item.qty + 1)
+                              }
+                              activeOpacity={0.8}
+                              style={styles.qtyIconContainer}>
                               <Icons.PlusIcon />
-                            </View>
+                            </TouchableOpacity>
                           </View>
                         </View>
                       </View>
@@ -283,7 +327,7 @@ const Home = () => {
                         resizeMode="cover"
                         style={styles.itemImage}
                       />
-                    </>
+                    </TouchableOpacity>
                   )}
                 />
               </View>
@@ -300,12 +344,14 @@ const Home = () => {
               </View>
               <View style={{marginTop: 20}}>
                 <FlatList
-                  data={popular}
+                  data={hotAndSpicy}
                   horizontal
                   showsHorizontalScrollIndicator={false}
                   contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
-                  renderItem={({item}) => (
-                    <>
+                  renderItem={({item, index}) => (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('ItemDetail')}
+                      activeOpacity={0.8}>
                       <View style={{paddingTop: 30}}>
                         <View style={styles.itemCard}>
                           <View style={styles.itemTextContainer}>
@@ -316,13 +362,23 @@ const Home = () => {
                             <Text style={styles.itemPrice}>{item.price}</Text>
                           </View>
                           <View style={styles.qtyContainer}>
-                            <View style={styles.qtyIconContainer}>
+                            <TouchableOpacity
+                              onPress={() =>
+                                handleHotAndSpicyQtyChange(index, item.qty - 1)
+                              }
+                              activeOpacity={0.8}
+                              style={styles.qtyIconContainer}>
                               <Icons.MinusIcon />
-                            </View>
-                            <Text style={styles.itemQuantity}>1</Text>
-                            <View style={styles.qtyIconContainer}>
+                            </TouchableOpacity>
+                            <Text style={styles.itemQuantity}>{item.qty}</Text>
+                            <TouchableOpacity
+                              onPress={() =>
+                                handleHotAndSpicyQtyChange(index, item.qty + 1)
+                              }
+                              activeOpacity={0.8}
+                              style={styles.qtyIconContainer}>
                               <Icons.PlusIcon />
-                            </View>
+                            </TouchableOpacity>
                           </View>
                         </View>
                       </View>
@@ -331,7 +387,7 @@ const Home = () => {
                         resizeMode="cover"
                         style={styles.itemImage}
                       />
-                    </>
+                    </TouchableOpacity>
                   )}
                 />
               </View>
@@ -468,10 +524,10 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   dealContentContainer: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     borderRadius: 25,
     backgroundColor: Colors.btnColor,
-    paddingVertical: 20,
+    paddingVertical: 10,
   },
   dealContentRow: {
     flexDirection: 'row',
@@ -508,11 +564,14 @@ const styles = StyleSheet.create({
   shopBackground: {
     backgroundColor: Colors.EerieBlack,
     borderRadius: 12,
-    
   },
   shopContent: {
     alignItems: 'center',
     gap: 5,
+    height: 120,
+    width: 170,
+    position: 'absolute',
+    justifyContent: 'center',
   },
   shopImage: {
     height: 50,
@@ -600,7 +659,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     borderRadius: 25,
     gap: 10,
-    height:140
+    height: 140,
   },
   brandInfo: {
     gap: 3,

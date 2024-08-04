@@ -84,7 +84,7 @@ const OtpScreen = () => {
               keyExtractor={(_, index) => index.toString()}
               horizontal
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{gap: 17}}
+              contentContainerStyle={{gap: 17,paddingHorizontal:20}}
             />
           </View>
           <TouchableOpacity
@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.BGColor,
-    paddingHorizontal: 20,
     paddingVertical: 40,
   },
   backButton: {
@@ -118,6 +117,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+    marginHorizontal:20
   },
   iconContainer: {
     height: 70,
@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     paddingVertical: 15,
     marginTop: 25,
+    marginHorizontal:20
   },
   OtpBtnText: {
     color: Colors.darkBronze,
@@ -182,5 +183,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: Colors.btnColor,
     top: '10%',
+    lineHeight:30,
   },
 });

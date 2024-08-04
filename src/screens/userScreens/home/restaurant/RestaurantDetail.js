@@ -21,6 +21,7 @@ import {
 const RestaurantDetail = () => {
   const navigation = useNavigation();
   const [selectedCategory, setSelectedCategory] = useState(0);
+  const [products, setProducts] = useState(productData);
 
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
@@ -28,6 +29,14 @@ const RestaurantDetail = () => {
 
   const handleCategoryPress = index => {
     setSelectedCategory(index === selectedCategory ? -1 : index);
+  };
+
+  const handleQtyChange = (index, newQty) => {
+    if (newQty >= 0) {
+      const updatedProducts = [...products];
+      updatedProducts[index].qty = newQty;
+      setProducts(updatedProducts);
+    }
   };
 
   return (
@@ -142,10 +151,10 @@ const RestaurantDetail = () => {
           />
         </View>
         <FlatList
-          data={productData}
+          data={products}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.productList}
-          renderItem={({item}) => (
+          renderItem={({item,index}) => (
             <TouchableOpacity
               onPress={() => navigation.navigate('ItemDetail')}
               activeOpacity={0.8}
@@ -156,13 +165,19 @@ const RestaurantDetail = () => {
                 <View style={styles.priceContainer}>
                   <Text style={styles.productPrice}>{item.price}</Text>
                   <View style={styles.quantityContainer}>
-                    <View style={styles.quantityIcon}>
+                    <TouchableOpacity
+                      onPress={() => handleQtyChange(index, item.qty - 1)}
+                      activeOpacity={0.8}
+                      style={styles.quantityIcon}>
                       <Icons.MinusIcon />
-                    </View>
-                    <Text style={styles.quantityText}>1</Text>
-                    <View style={styles.quantityIcon}>
+                    </TouchableOpacity>
+                    <Text style={styles.quantityText}>{item.qty}</Text>
+                    <TouchableOpacity
+                      onPress={() => handleQtyChange(index, item.qty + 1)}
+                      activeOpacity={0.8}
+                      style={styles.quantityIcon}>
                       <Icons.PlusIcon />
-                    </View>
+                    </TouchableOpacity>
                   </View>
                 </View>
               </View>
@@ -270,7 +285,7 @@ const styles = StyleSheet.create({
   ratingDeliverySection: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     backgroundColor: Colors.EerieBlack,
     borderRadius: 15,
     paddingHorizontal: 30,
@@ -345,13 +360,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   dealItem: {
-    padding: 20,
+    paddingHorizontal: 20,
     borderRadius: 15,
     backgroundColor: Colors.primary,
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     gap: 15,
+    paddingVertical: 15,
   },
   dealIcon: {
     flexDirection: 'row',
@@ -367,7 +383,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Medium',
     fontSize: 10,
     color: Colors.gray,
-    width: 150,
+    width: 110,
   },
   categoriesSection: {
     marginVertical: 20,

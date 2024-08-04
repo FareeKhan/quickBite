@@ -12,7 +12,7 @@ export const deals = [
     id: '2',
     title: 'Free Delivery!',
     items: ['Get your favourite food at your doorstep with free delivery'],
-    image:<Icons.ThumbIcon height={120} width={120}/>,
+    image:<Icons.ThumbIcon height={120} width={100}/>,
     btnText: 'Order Food',
   },
 ];
@@ -130,17 +130,17 @@ export const availableDeals = [
   {
     id: '1',
     discount: '25% off',
-    desc: 'Min. order Rs 199 and specialsavings for quickbite members',
+    desc: 'Min. order Rs 199 and special savings for quickbite members',
   },
   {
     id: '2',
     discount: '25% off',
-    desc: 'Min. order Rs 199 and specialsavings for quickbite members',
+    desc: 'Min. order Rs 199 and special savings for quickbite members',
   },
   {
     id: '3',
     discount: '25% off',
-    desc: 'Min. order Rs 199 and specialsavings for quickbite members',
+    desc: 'Min. order Rs 199 and special savings for quickbite members',
   },
 ];
 
@@ -150,34 +150,39 @@ export const productData = [
     name: 'Double Decker',
     desc: 'Our best selling double decker beef burger with 2 beef patty and special sauce',
     price: 'Rs 350',
+    qty:0
   },
   {
     id: '2',
     name: 'Double Decker',
     desc: 'Our best selling double decker beef burger with 2 beef patty and special sauce',
     price: 'Rs 350',
+    qty:0
   },
   {
     id: '3',
     name: 'Double Decker',
     desc: 'Our best selling double decker beef burger with 2 beef patty and special sauce',
     price: 'Rs 350',
+    qty:0
   },
   {
     id: '4',
     name: 'Double Decker',
     desc: 'Our best selling double decker beef burger with 2 beef patty and special sauce',
     price: 'Rs 350',
+    qty:0
   },
 ];
 
-export const popular = [
+export const Popular = [
   {
     id: '1',
     name: 'Beef Burger',
     image: require('../assets/images/Popular/1.png'),
     restaurant: 'Kababjees',
     price: '$350',
+    qty:0
   },
   {
     id: '2',
@@ -185,6 +190,7 @@ export const popular = [
     image: require('../assets/images/Popular/2.png'),
     restaurant: 'Kababjees',
     price: '$350',
+    qty:0
   },
   {
     id: '3',
@@ -192,6 +198,52 @@ export const popular = [
     image: require('../assets/images/Popular/2.png'),
     restaurant: 'Kababjees',
     price: '$350',
+    qty:0
+  },
+];
+export const HotAndSpicy = [
+  {
+    id: '1',
+    name: 'Beef Burger',
+    image: require('../assets/images/Popular/1.png'),
+    restaurant: 'Kababjees',
+    price: '$350',
+    qty:0
+  },
+  {
+    id: '2',
+    name: 'Beef Burger',
+    image: require('../assets/images/Popular/2.png'),
+    restaurant: 'Kababjees',
+    price: '$350',
+    qty:0
+  },
+  {
+    id: '3',
+    name: 'Beef Burger',
+    image: require('../assets/images/Popular/2.png'),
+    restaurant: 'Kababjees',
+    price: '$350',
+    qty:0
+  },
+];
+export const cartData = [
+  {
+    id: '1',
+    name: 'Double Decker',
+    desc:'with extra cheese',
+    image: <Icons.Burger/>,
+    price: 'Rs 450',
+    qty:1
+  },
+ 
+  {
+    id: '2',
+    name: 'Tikka Pizza small',
+    desc:'with extra cheese',
+    image: <Icons.Pizza/>,
+    price: 'Rs 350',
+    qty:1
   },
 ];
 
@@ -213,9 +265,9 @@ export const drinks = [
 export const cheese = [{name: 'Cheese slice', price: '100.00'}];
 
 export const orderCancelOptions = [
-  {title: 'Remove it from my order'},
-  {title: 'Cancel the entire order'},
-  {title: 'Call me and Confirm'},
+  {id:'1',title: 'Remove it from my order'},
+  {id:'2',title: 'Cancel the entire order'},
+  {id:'3',title: 'Call me and Confirm'},
 ];
 export const notificationOptions = [
   {title: 'Receive push notifications'},
@@ -223,9 +275,17 @@ export const notificationOptions = [
   {title: 'Show floating icon'},
 ];
 export const orderCancelReasons = [
-  {title: 'Rider is too far'},
-  {title: 'I don’t want food now'},
-  {title: 'Do not wish to answer'},
+  {id:'1',title: 'Rider is too far'},
+  {id:'2',title: 'I don’t want food now'},
+  {id:'3',title: 'Do not wish to answer'},
+];
+export const paymentMethods = [
+  {id:'1',title: 'Cash on delivery'},
+  {id:'2',title: 'Online Payment'},
+];
+export const deliveryMethods = [
+  {id:'1',title: 'Home delivery'},
+  {id:'2',title: 'Pick Up'},
 ];
 export const languageOptions = [
   {title: 'English'},

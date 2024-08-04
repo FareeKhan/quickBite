@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,30 +7,34 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {useNavigation} from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 import BottomSheetComponent from '../../../../components/BottomSheetComponent';
-import {drinks, cheese, orderCancelOptions} from '../../../../constants/data';
-import {Colors} from '../../../../constants/color';
+import { drinks, cheese, orderCancelOptions } from '../../../../constants/data';
+import { Colors } from '../../../../constants/color';
 import Icons from '../../../../assets/icons';
 
 const ItemDetail = () => {
   const [qty, setQty] = useState(0);
-  const [selectedDrink, setSelectedDrink] = useState(null);
+  const [selectedDrinks, setSelectedDrinks] = useState([]); 
   const [selectedCheese, setSelectedCheese] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [isOpened, setisOpened] = useState(false);
+  const [isOpened, setIsOpened] = useState(false);
   const navigation = useNavigation();
 
-  const handleSelectDrink = drink => {
-    setSelectedDrink(drink);
+  const handleSelectDrink = (drink) => {
+    if (selectedDrinks.includes(drink)) {
+      setSelectedDrinks(selectedDrinks.filter((d) => d !== drink));
+    } else {
+      setSelectedDrinks([...selectedDrinks, drink]);
+    }
   };
 
-  const handleSelectCheese = item => {
+  const handleSelectCheese = (item) => {
     setSelectedCheese(item);
   };
 
-  const handleSelectOption = item => {
+  const handleSelectOption = (item) => {
     setSelectedOption(item);
   };
 
@@ -40,7 +44,8 @@ const ItemDetail = () => {
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.goBack()}
-          activeOpacity={0.8}>
+          activeOpacity={0.8}
+        >
           <Icons.Arrow />
         </TouchableOpacity>
         <Icons.Burger style={styles.burgerIcon} height={150} width={150} />
@@ -59,24 +64,28 @@ const ItemDetail = () => {
               <Text style={styles.optionalButtonText}>optional</Text>
             </TouchableOpacity>
           </View>
-          <Text style={styles.optionSubtitle}>Select one</Text>
-          {drinks.map(drink => (
+          <Text style={styles.optionSubtitle}>Select one or more</Text>
+          {drinks.map((drink) => (
             <TouchableOpacity
-              activeOpacity={0.8}
               key={drink.name}
               style={styles.optionItem}
-              onPress={() => handleSelectDrink(drink)}>
+              onPress={() => handleSelectDrink(drink)}
+              activeOpacity={0.8}
+            >
               <View
-                style={{flexDirection: 'row', alignItems: 'center', gap: 15}}>
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}
+              >
                 <View
                   style={[
                     styles.optionCircle,
                     {
-                      backgroundColor:
-                        selectedDrink === drink && Colors.btnColor,
+                      backgroundColor: selectedDrinks.includes(drink)
+                        ? Colors.btnColor
+                        : Colors.EerieBlack,
                     },
-                  ]}>
-                  {selectedDrink === drink && (
+                  ]}
+                >
+                  {selectedDrinks.includes(drink) && (
                     <View style={styles.optionInnerCircle} />
                   )}
                 </View>
@@ -94,22 +103,24 @@ const ItemDetail = () => {
             </TouchableOpacity>
           </View>
           <Text style={styles.optionSubtitle}>Select one</Text>
-          {cheese.map(item => (
+          {cheese.map((item) => (
             <TouchableOpacity
-              activeOpacity={0.8}
               key={item.name}
               style={styles.optionItem}
-              onPress={() => handleSelectCheese(item)}>
+              onPress={() => handleSelectCheese(item)}
+              activeOpacity={0.8}
+            >
               <View
-                style={{flexDirection: 'row', alignItems: 'center', gap: 15}}>
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}
+              >
                 <View
                   style={[
                     styles.optionCircle,
                     {
-                      backgroundColor:
-                        selectedCheese === item && Colors.btnColor,
+                      backgroundColor: selectedCheese === item ? Colors.btnColor : Colors.EerieBlack,
                     },
-                  ]}>
+                  ]}
+                >
                   {selectedCheese === item && (
                     <View style={styles.optionInnerCircle} />
                   )}
@@ -137,33 +148,37 @@ const ItemDetail = () => {
         </Text>
         {isOpened ? (
           <BottomSheetComponent
-            onPressMenu={() => setisOpened(!isOpened)}
+            onPressMenu={() => setIsOpened(!isOpened)}
             marginBottom={15}
             Component={() => (
               <>
                 <TouchableOpacity
-                  onPress={() => setisOpened(!isOpened)}
+                  onPress={() => setIsOpened(!isOpened)}
                   activeOpacity={0.8}
-                  style={styles.CrossIconContainer}>
+                  style={styles.CrossIconContainer}
+                >
                   <Icons.CrossIcon />
                 </TouchableOpacity>
-                <View style={{paddingHorizontal: 20}}>
+                <View style={{ paddingHorizontal: 20 }}>
                   <Text style={styles.BSTitle}>
                     If this product is not available
                   </Text>
-                  {orderCancelOptions.map(item => (
+                  {orderCancelOptions.map((item) => (
                     <TouchableOpacity
+                      key={item.id}
                       onPress={() => handleSelectOption(item)}
                       activeOpacity={0.8}
-                      style={styles.optionRow}>
+                      style={styles.optionRow}
+                    >
                       <View
                         style={[
                           styles.optionCircle,
                           {
                             backgroundColor:
-                              selectedOption === item && Colors.btnColor,
+                              selectedOption === item ? Colors.btnColor : Colors.EerieBlack,
                           },
-                        ]}>
+                        ]}
+                      >
                         {selectedOption === item && (
                           <View style={styles.optionInnerCircle} />
                         )}
@@ -172,35 +187,40 @@ const ItemDetail = () => {
                     </TouchableOpacity>
                   ))}
                   <TouchableOpacity
-                    onPress={() => setisOpened(!isOpened)}
+                    onPress={() => setIsOpened(!isOpened)}
                     activeOpacity={0.8}
-                    style={styles.applyBtn}>
+                    style={styles.applyBtn}
+                  >
                     <Text style={styles.applyBtnText}>Apply</Text>
                   </TouchableOpacity>
                 </View>
               </>
             )}
-            BGSheetColor={Colors.EerieBlack}
+            BGSheetColor={Colors.primary}
           />
         ) : null}
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => {
-            setisOpened(!isOpened);
+            setIsOpened(!isOpened);
           }}
-          style={styles.removeFromOrderContainer}>
+          style={styles.removeFromOrderContainer}
+        >
           <Text style={styles.removeFromOrderText}>
             Remove it from my order
           </Text>
           <Icons.DropdownRight />
         </TouchableOpacity>
-        <View style={{marginTop: 40}}>
+        <View style={{ marginTop: 40 }}>
           <View style={styles.addToCartContainer}>
-            <View
+            <TouchableOpacity
+              onPress={() => navigation.navigate('BottomTabNavigation', { screen: 'MyCart' })}
+              activeOpacity={0.8}
               style={[
                 styles.addToCartButton,
-                {backgroundColor: qty > 0 ? Colors.btnColor : Colors.BGColor},
-              ]}>
+                { backgroundColor: qty > 0 ? Colors.btnColor : Colors.BGColor },
+              ]}
+            >
               <Text
                 style={[
                   styles.addToCartButtonText,
@@ -208,10 +228,11 @@ const ItemDetail = () => {
                     fontFamily: qty > 0 ? 'Manrope-Bold' : 'Manrope-Regular',
                     color: qty > 0 ? Colors.darkBronze : Colors.gray,
                   },
-                ]}>
+                ]}
+              >
                 Add to cart
               </Text>
-            </View>
+            </TouchableOpacity>
             <View style={styles.quantityContainer}>
               <TouchableOpacity
                 onPress={() => {
@@ -220,14 +241,16 @@ const ItemDetail = () => {
                   }
                 }}
                 activeOpacity={0.8}
-                style={styles.quantityIcon}>
+                style={styles.quantityIcon}
+              >
                 <Icons.MinusIcon />
               </TouchableOpacity>
               <Text style={styles.quantityText}>{qty}</Text>
               <TouchableOpacity
                 onPress={() => setQty(qty + 1)}
                 activeOpacity={0.8}
-                style={styles.quantityIcon}>
+                style={styles.quantityIcon}
+              >
                 <Icons.PlusIcon />
               </TouchableOpacity>
             </View>

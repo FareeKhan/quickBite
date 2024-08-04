@@ -11,12 +11,26 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import BottomSheetComponent from '../../../components/BottomSheetComponent';
+import {paymentMethods,deliveryMethods} from '../../../constants/data';
 import {Colors} from '../../../constants/color';
 import Icons from '../../../assets/icons';
 
 const Checkout = () => {
-  const [isOpened, setisOpened] = useState(false);
+  const [orderSuccessfulBS, setOrderSuccessfulBS] = useState(false);
+  const [paymentSelectionBS, setPaymentSelectionBS] = useState(false);
+  const [deliverySelectionBS, setDeliverySelectionBS] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+  const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(null);
+
   const navigation = useNavigation();
+
+  const handleSelectedPaymentMethod = item => {
+    setSelectedPaymentMethod(item);
+  };
+
+  const handleSelectedDeliveryMethod = item => {
+    setSelectedDeliveryMethod(item);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -48,30 +62,118 @@ const Checkout = () => {
             />
           </View>
         </View>
-        <View style={styles.paymentMethodContainer}>
+        {paymentSelectionBS ? (
+          <BottomSheetComponent
+            onPressMenu={() => setPaymentSelectionBS(!paymentSelectionBS)}
+            BGSheetColor={Colors.primary}
+            HEIGHT={'25%'}
+            marginBottom={10}
+            Component={() => (
+              <View style={{paddingHorizontal: 20, paddingVertical: 30}}>
+                <Text
+                  style={{
+                    fontFamily: 'Manrope-SemiBold',
+                    color: Colors.white,
+                    fontSize: 18,
+                    marginBottom: 20,
+                  }}>
+                  Select Payment Method
+                </Text>
+                {paymentMethods.map(item => (
+                  <TouchableOpacity
+                    onPress={() => handleSelectedPaymentMethod(item)}
+                    activeOpacity={0.8}
+                    style={styles.optionRow}>
+                    <View
+                      style={[
+                        styles.optionCircle,
+                        {
+                          backgroundColor:
+                            selectedPaymentMethod === item && Colors.btnColor,
+                        },
+                      ]}>
+                      {selectedPaymentMethod === item && (
+                        <View style={styles.optionInnerCircle} />
+                      )}
+                    </View>
+                    <Text style={styles.optionValue}>{item.title}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            )}
+          />
+        ) : null}
+        <TouchableOpacity
+          onPress={() => setPaymentSelectionBS(!paymentSelectionBS)}
+          activeOpacity={0.8}
+          style={styles.paymentMethodContainer}>
           <View style={styles.paymentMethodTextContainer}>
             <Text style={styles.paymentMethodTitle}>Payment Method</Text>
             <View style={styles.paymentMethodDetails}>
               <Icons.ThumbIcon height={32} width={32} />
-              <Text style={styles.paymentMethodText}>Cash on delivery</Text>
+              <Text style={styles.paymentMethodText}>{selectedPaymentMethod?.title??'Cash on delivery'}</Text>
             </View>
           </View>
           <TouchableOpacity activeOpacity={0.8} style={styles.changeButton}>
             <Text style={styles.changeButtonText}>change</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.deliveryMethodContainer}>
+        </TouchableOpacity>
+        {deliverySelectionBS ? (
+          <BottomSheetComponent
+            onPressMenu={() => setDeliverySelectionBS(!deliverySelectionBS)}
+            BGSheetColor={Colors.primary}
+            HEIGHT={'25%'}
+            marginBottom={10}
+            Component={() => (
+              <View style={{paddingHorizontal: 20, paddingVertical: 30}}>
+                <Text
+                  style={{
+                    fontFamily: 'Manrope-SemiBold',
+                    color: Colors.white,
+                    fontSize: 18,
+                    marginBottom: 20,
+                  }}>
+                  Select Delivery Method
+                </Text>
+                {deliveryMethods.map(item => (
+                  <TouchableOpacity
+                    onPress={() => handleSelectedDeliveryMethod(item)}
+                    activeOpacity={0.8}
+                    style={styles.optionRow}>
+                    <View
+                      style={[
+                        styles.optionCircle,
+                        {
+                          backgroundColor:
+                            selectedDeliveryMethod === item && Colors.btnColor,
+                        },
+                      ]}>
+                      {selectedDeliveryMethod === item && (
+                        <View style={styles.optionInnerCircle} />
+                      )}
+                    </View>
+                    <Text style={styles.optionValue}>{item.title}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            )}
+          />
+        ) : null}
+        <TouchableOpacity
+        onPress={() => setDeliverySelectionBS(!deliverySelectionBS)}
+        activeOpacity={0.8}
+         style={styles.deliveryMethodContainer}>
           <View style={styles.deliveryMethodTextContainer}>
             <Text style={styles.deliveryMethodTitle}>Delivery method</Text>
             <View style={styles.deliveryMethodDetails}>
               <Icons.ThumbIcon height={32} width={32} />
-              <Text style={styles.deliveryMethodText}>Home delivery</Text>
+              <Text style={styles.deliveryMethodText}>{selectedDeliveryMethod?.title??'Home delivery'}</Text>
             </View>
           </View>
           <TouchableOpacity activeOpacity={0.8} style={styles.changeButton}>
             <Text style={styles.changeButtonText}>change</Text>
           </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
         <View style={styles.orderSummaryContainer}>
           <Text style={styles.orderSummaryTitle}>Order Summary</Text>
           <View style={styles.orderSummaryItems}>
@@ -101,19 +203,19 @@ const Checkout = () => {
             <Text style={styles.totalPrice}>Rs 900.00</Text>
           </View>
         </View>
-        {isOpened ? (
+        {orderSuccessfulBS ? (
           <BottomSheetComponent
-            onPressMenu={() => setisOpened(!isOpened)}
+            onPressMenu={() => setOrderSuccessfulBS(!orderSuccessfulBS)}
             BGSheetColor={Colors.EerieBlack}
             HEIGHT={'95%'}
             marginBottom={10}
             Component={() => (
               <>
                 <ImageBackground
-                  style={{width: '100%',height:350}}
+                  style={{width: '100%', height: 350}}
                   source={require('../../../assets/images/BG.png')}>
                   <TouchableOpacity
-                    onPress={() => setisOpened(!isOpened)}
+                    onPress={() => setOrderSuccessfulBS(!orderSuccessfulBS)}
                     activeOpacity={0.8}
                     style={styles.CrossIconContainer}>
                     <Icons.CrossIcon />
@@ -130,8 +232,9 @@ const Checkout = () => {
                   Your Order has been placed successfully{' '}
                 </Text>
                 <TouchableOpacity
-                onPress={()=>navigation.navigate('Tracking')}
-                 activeOpacity={0.8} style={styles.trackBtn}>
+                  onPress={() => navigation.navigate('Tracking')}
+                  activeOpacity={0.8}
+                  style={styles.trackBtn}>
                   <Text style={styles.trackBtnText}>Track Order</Text>
                 </TouchableOpacity>
               </>
@@ -139,7 +242,7 @@ const Checkout = () => {
           />
         ) : null}
         <TouchableOpacity
-          onPress={() => setisOpened(!isOpened)}
+          onPress={() => setOrderSuccessfulBS(!orderSuccessfulBS)}
           activeOpacity={0.8}
           style={styles.orderPlaceBtn}>
           <Text style={styles.orderPlaceBtnText}>Place Order</Text>
@@ -166,6 +269,34 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  optionRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 15,
+    marginBottom: 15,
+    paddingHorizontal: 10,
+  },
+  optionCircle: {
+    height: 20,
+    width: 20,
+    borderWidth: 2,
+    borderColor: Colors.btnColor,
+    borderRadius: 50,
+    top: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  optionValue: {
+    fontFamily: 'Manrope-Medium',
+    fontSize: 15,
+    color: Colors.gray,
+  },
+  optionInnerCircle: {
+    height: 11,
+    width: 11,
+    backgroundColor: Colors.EerieBlack,
+    borderRadius: 50,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -204,6 +335,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     paddingVertical: 15,
     marginTop: 40,
+    marginBottom: 30,
   },
   orderPlaceBtnText: {
     color: Colors.darkBronze,

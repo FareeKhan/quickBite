@@ -80,7 +80,7 @@ const BottomTabNavigation = () => {
         }}
       />
       <Tab.Screen
-        name="My Cart"
+        name="MyCart"
         component={MyCartScreen}
         options={{
           tabBarIcon: ({focused}) =>

@@ -5,19 +5,30 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  FlatList,
+  TextInput
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
-import {deliveryOptions} from '../../../constants/data';
+import {deliveryOptions, cartData} from '../../../constants/data';
 import {Colors} from '../../../constants/color';
 import Icons from '../../../assets/icons';
 
 const MyCart = () => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [cart, setCart] = useState(cartData);
   const navigation = useNavigation();
 
   const handleSelectOption = item => {
     setSelectedOption(item);
+  };
+
+  const handleQtyChange = (index, newQty) => {
+    if (newQty >= 0) {
+      const updatedProducts = [...cart];
+      updatedProducts[index].qty = newQty;
+      setCart(updatedProducts);
+    }
   };
 
   return (
@@ -32,59 +43,53 @@ const MyCart = () => {
           </TouchableOpacity>
           <Text style={styles.headerTitle}>MyCart</Text>
         </View>
-        <View style={styles.cartItemCard}>
-          <View style={styles.cartItemContent}>
-            <Icons.Burger />
-            <View style={styles.cartItemDetails}>
-              <View>
-                <Text style={styles.itemTitle}>Double Decker</Text>
-                <Text style={styles.itemDescription}>with extra cheese</Text>
-              </View>
-              <View style={styles.quantityControl}>
-                <TouchableOpacity style={styles.quantityButton}>
-                  <Icons.MinusIcon />
-                </TouchableOpacity>
-                <Text style={styles.quantityText}>1</Text>
-                <TouchableOpacity style={styles.quantityButton}>
-                  <Icons.PlusIcon />
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={styles.priceContainer}>
-              <TouchableOpacity activeOpacity={0.8} style={styles.deleteButton}>
-                <Icons.DeleteIcon />
-              </TouchableOpacity>
-              <Text style={styles.itemPrice}>Rs 450</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.cartItemCard}>
-          <View style={styles.cartItemContent}>
-            <Icons.Pizza />
-            <View style={styles.cartItemDetails}>
-              <View>
-                <Text style={styles.itemTitle}>Tikka Pizza small</Text>
-                <Text style={styles.itemDescription}>with extra cheese</Text>
-              </View>
-              <View style={styles.quantityControl}>
-                <TouchableOpacity style={styles.quantityButton}>
-                  <Icons.MinusIcon />
-                </TouchableOpacity>
-                <Text style={styles.quantityText}>1</Text>
-                <TouchableOpacity style={styles.quantityButton}>
-                  <Icons.PlusIcon />
-                </TouchableOpacity>
+        <FlatList
+          data={cartData}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{gap: 15}}
+          renderItem={({item, index}) => (
+            <View style={styles.cartItemCard}>
+              <View style={styles.cartItemContent}>
+                {item.image}
+                <View style={styles.cartItemDetails}>
+                  <View>
+                    <Text style={styles.itemTitle}>{item.name}</Text>
+                    <Text style={styles.itemDescription}>{item.desc}</Text>
+                  </View>
+                  <View style={styles.quantityControl}>
+                    <TouchableOpacity
+                      onPress={() => handleQtyChange(index, item.qty - 1)}
+                      activeOpacity={0.8}
+                      style={styles.quantityButton}>
+                      <Icons.MinusIcon />
+                    </TouchableOpacity>
+                    <Text style={styles.quantityText}>{item.qty}</Text>
+                    <TouchableOpacity
+                      onPress={() => handleQtyChange(index, item.qty + 1)}
+                      activeOpacity={0.8}
+                      style={styles.quantityButton}>
+                      <Icons.PlusIcon />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                <View style={styles.priceContainer}>
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    style={styles.deleteButton}>
+                    <Icons.DeleteIcon />
+                  </TouchableOpacity>
+                  <Text style={styles.itemPrice}>{item.price}</Text>
+                </View>
               </View>
             </View>
-            <View style={styles.priceContainer}>
-              <TouchableOpacity activeOpacity={0.8} style={styles.deleteButton}>
-                <Icons.DeleteIcon />
-              </TouchableOpacity>
-              <Text style={styles.itemPrice}>Rs 350</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.addMoreWrapper}>
+          )}
+        />
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('BottomTabNavigation', {screen: 'Home'})
+          }
+          activeOpacity={0.8}
+          style={styles.addMoreWrapper}>
           <Text style={styles.addMoreText}>Add more items</Text>
           <TouchableOpacity
             style={[
@@ -93,7 +98,7 @@ const MyCart = () => {
             ]}>
             <Icons.PlusIcon />
           </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
         <View style={styles.deliveryOptionsContainer}>
           <Icons.ThumbIcon
             style={{alignSelf: 'center'}}
@@ -109,7 +114,8 @@ const MyCart = () => {
                   borderBottomWidth:
                     index < deliveryOptions.length - 1 ? 0.2 : 0,
                 },
-              ]}  key={index}>
+              ]}
+              key={index}>
               <TouchableOpacity
                 onPress={() => handleSelectOption(item)}
                 activeOpacity={0.8}
@@ -144,7 +150,11 @@ const MyCart = () => {
           ))}
         </View>
         <View style={styles.promoCodeContainer}>
-          <Text style={styles.promoCodeText}>Enter Promo Code</Text>
+          <TextInput
+          placeholder='Enter Promo Code'
+          style={styles.promoCodeText}
+          placeholderTextColor={Colors.gray}
+          />
           <TouchableOpacity activeOpacity={0.8} style={styles.applyBtn}>
             <Text style={styles.applyBtnText}>Apply</Text>
           </TouchableOpacity>
@@ -154,8 +164,9 @@ const MyCart = () => {
           <Text style={styles.totalPrice}>Rs 900.00</Text>
         </View>
         <TouchableOpacity
-        onPress={()=>navigation.navigate('Checkout')}
-         activeOpacity={0.8} style={styles.confirmOrderBtn}>
+          onPress={() => navigation.navigate('Checkout')}
+          activeOpacity={0.8}
+          style={styles.confirmOrderBtn}>
           <Text style={styles.confirmOrderBtnText}>Confirm Order</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -292,7 +303,8 @@ const styles = StyleSheet.create({
   promoCodeText: {
     fontFamily: 'Manrope-Regular',
     fontSize: 14,
-    color: Colors.white,
+    color: Colors.gray,
+    width:'50%'
   },
   totalContainer: {
     marginTop: 25,
@@ -374,6 +386,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     paddingVertical: 15,
     marginTop: 40,
+    marginBottom:30,
   },
   confirmOrderBtnText: {
     color: Colors.darkBronze,

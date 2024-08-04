@@ -5,6 +5,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  TextInput
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import BottomSheetComponent from '../../../components/BottomSheetComponent';
@@ -21,6 +22,8 @@ const AddAddress = () => {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
+
+
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -64,7 +67,7 @@ const AddAddress = () => {
             <BottomSheetComponent
               onPressMenu={() => setisOpened(!isOpened)}
               marginBottom={10}
-              HEIGHT={'88%'}
+              HEIGHT={isOpened?'85%':'88%'}
               Component={() => (
                 <>
                   <View style={[styles.divider, {marginTop: 15}]} />
@@ -76,7 +79,11 @@ const AddAddress = () => {
                       <Icons.Arrow />
                     </TouchableOpacity>
                     <View style={styles.titleRow}>
-                      <Text style={styles.title}>Latifabad No</Text>
+                    <TextInput
+                        placeholder="Latifabad No"
+                        placeholderTextColor={Colors.gray}
+                        style={styles.title}
+                      />
                       <TouchableOpacity activeOpacity={0.8} style={styles.icon}>
                         <Icons.CrossIcon />
                       </TouchableOpacity>
@@ -127,7 +134,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 20,
+    padding:20
   },
   icon: {
     height: 40,
@@ -169,6 +176,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Medium',
     fontSize: 13,
     color: Colors.gray,
+    width:'70%'
   },
   footerContainer: {
     paddingHorizontal: 30,
