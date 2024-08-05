@@ -9,12 +9,14 @@ import {
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import BottomSheetComponent from '../../../components/BottomSheetComponent';
+import StarRating from 'react-native-star-rating-widget';
 import {useNavigation} from '@react-navigation/native';
 import {Colors} from '../../../constants/color';
 import Icons from '../../../assets/icons';
 
 const Orders = () => {
   const [isOpened, setisOpened] = useState(false);
+  const [productRating, setProductRating] = useState(0)
   const navigation = useNavigation();
 
   return (
@@ -61,11 +63,14 @@ const Orders = () => {
                   Please give us the feedback about your delivery rider
                 </Text>
                 <View style={styles.starsContainer}>
-                  <Icons.StarLarge />
-                  <Icons.StarLarge />
-                  <Icons.StarLarge />
-                  <Icons.StarLargeBlack />
-                  <Icons.StarLargeBlack />
+                  <StarRating
+                    rating={productRating}
+                    onChange={setProductRating}
+                    maxStars={5}
+                    starSize={50}
+                    color={Colors.btnColor}
+                    starStyle={{marginHorizontal: 0}}
+                  />
                 </View>
                 <View style={styles.reviewContainer}>
                   <TextInput

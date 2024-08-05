@@ -37,7 +37,6 @@ const LoginScreen = () => {
       navigation.navigate('BottomTabNavigation');
     } else {
       setIsCredentialsCorrect(false);
-      Alert.alert('Email is required')
     }
   };
 

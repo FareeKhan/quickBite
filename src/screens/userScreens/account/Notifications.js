@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  FlatList,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import BottomSheetComponent from '../../../components/BottomSheetComponent';
@@ -16,17 +17,19 @@ import Icons from '../../../assets/icons';
 const Notifications = () => {
   const [isOpened, setisOpened] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [showUnread, setShowUnread] = useState(true); 
+  const [showUnread, setShowUnread] = useState(true);
   const navigation = useNavigation();
 
   const notifications = [
-    { id: 1, title: 'Your item has been shipped.', read: false },
-    { id: 2, title: 'Your delivery is scheduled.', read: true },
-    { id: 3, title: 'Your order has been delivered.', read: false },
+    {id: 1, title: 'Your item has been shipped.', read: false},
+    {id: 2, title: 'Your delivery is scheduled.', read: true},
+    {id: 3, title: 'Your delivery is scheduled.', read: true},
+    {id: 4, title: 'Your delivery is scheduled.', read: true},
+    {id: 5, title: 'Your order has been delivered.', read: false},
   ];
 
   const filteredNotifications = notifications.filter(
-    (notification) => notification.read !== !showUnread
+    notification => notification.read !== !showUnread,
   );
 
   const handleSelectOption = item => {
@@ -98,44 +101,62 @@ const Notifications = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.btnsContainer}>
-        <TouchableOpacity
+          <TouchableOpacity
             activeOpacity={0.8}
             style={[
               styles.unReadBtn,
-              { backgroundColor: showUnread ? Colors.btnColor : Colors.EerieBlack },
+              {
+                backgroundColor: showUnread
+                  ? Colors.btnColor
+                  : Colors.EerieBlack,
+                zIndex: showUnread ? 1 : 0,
+              },
             ]}
-            onPress={() => setShowUnread(true)}
-          >
-            <Text style={[
-              styles.unReadBtnText,
-              { color: showUnread ? Colors.darkBronze : Colors.gray },
-            ]}>Unread</Text>
+            onPress={() => setShowUnread(true)}>
+            <Text
+              style={[
+                styles.unReadBtnText,
+                {color: showUnread ? Colors.darkBronze : Colors.gray},
+              ]}>
+              Unread
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.8}
             style={[
               styles.readBtn,
-              { backgroundColor: !showUnread ? Colors.btnColor : Colors.EerieBlack },
+              {
+                backgroundColor: !showUnread
+                  ? Colors.btnColor
+                  : Colors.EerieBlack,
+              },
             ]}
-            onPress={() => setShowUnread(false)}
-          >
-            <Text style={[
-              styles.readBtnText,
-              { color: !showUnread ? Colors.darkBronze : Colors.gray },
-            ]}>Read</Text>
+            onPress={() => setShowUnread(false)}>
+            <Text
+              style={[
+                styles.readBtnText,
+                {color: !showUnread ? Colors.darkBronze : Colors.gray},
+              ]}>
+              Read
+            </Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.deliveryContainer}>
           {filteredNotifications.length > 0 ? (
-            filteredNotifications.map((notification) => (
-              <Text key={notification.id} style={styles.deliveryDes}>
-                {notification.title}
-              </Text>
-            ))
+            <FlatList
+              data={filteredNotifications}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{gap:15}}
+              renderItem={({item}) => (
+                <View style={styles.deliveryContainer}>
+                <Text key={item.id} style={styles.deliveryDes}>
+                  {item.title}
+                </Text>
+        </View>
+              )}
+            />
           ) : (
             <Text style={styles.deliveryDes}>No notifications available.</Text>
           )}
-        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -223,6 +244,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginBottom:20
   },
   unReadBtn: {
     width: '50%',
@@ -231,7 +253,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.EerieBlack,
     borderRadius: 12,
     paddingVertical: 12,
-    zIndex:0
   },
   unReadBtnText: {
     fontFamily: 'Manrope-SemiBold',
@@ -249,16 +270,12 @@ const styles = StyleSheet.create({
   readBtnText: {
     fontFamily: 'Manrope-Bold',
     fontSize: 15,
-  
   },
   deliveryContainer: {
-    marginTop: 20,
     paddingHorizontal: 25,
-    paddingVertical: 15,
+    paddingVertical: 25,
     backgroundColor: Colors.EerieBlack,
     borderRadius: 12,
-    gap: 20,
-    marginBottom:20
   },
   deliveryTitle: {
     fontFamily: 'Manrope-SemiBold',

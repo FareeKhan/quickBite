@@ -50,7 +50,7 @@ const LiveOrders = () => {
           data={orderSteps}
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{gap: 15, paddingHorizontal: 20}}
+          contentContainerStyle={{gap:30, marginHorizontal:30}}
           renderItem={({item}) => (
              <TouchableOpacity
              onPress={()=>navigation.navigate('Tracking')}
@@ -109,9 +109,8 @@ const LiveOrders = () => {
                 />
                 <Text style={styles.dateText}>6-13-2024</Text>
               </View>
-            </TouchableOpacity>
-          )}
-        />
+            </TouchableOpacity>)}
+        /> 
       </ImageBackground>
     </SafeAreaView>
   );
@@ -185,9 +184,10 @@ const styles = StyleSheet.create({
   detailsContainer: {
     borderRadius: 15,
     backgroundColor: Colors.EerieBlack,
-    padding: 20,
+    paddingVertical: 20,
     marginTop:90,
-    marginBottom:20
+    marginBottom:20,
+    paddingHorizontal:30,
   },
   profileHeader: {
     flexDirection: 'row',
@@ -200,16 +200,16 @@ const styles = StyleSheet.create({
   profileInfo: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 15,
+    gap: 20,
   },
   profileImage: {
-    height: 45,
-    width: 45,
+    height: 50,
+    width: 50,
     borderRadius: 50,
   },
   profileName: {
     fontFamily: 'Manrope-Regular',
-    fontSize: 17,
+    fontSize: 18,
     color: Colors.white,
   },
   ratingContainer: {
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontFamily: 'Manrope-Medium',
-    fontSize: 13,
+    fontSize: 14,
     color: Colors.gray,
   },
   actionContainer: {
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   },
   stepContainer: {
     flexDirection: 'row',
-    gap: 15,
+    gap: 20,
   },
   stepIcon: {
     height: 40,

@@ -65,7 +65,7 @@ const Home = () => {
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled">
             <View style={styles.headerContainer}>
-              <TouchableOpacity activeOpacity={0.8} style={styles.locationBtn}>
+              <TouchableOpacity onPress={()=>navigation.navigate('AddAddress')} activeOpacity={0.8} style={styles.locationBtn}>
                 <Icons.LocationIcon />
                 <Text style={styles.locationText}>Hyderabad, Sindh</Text>
                 <Icons.DownArrow />
