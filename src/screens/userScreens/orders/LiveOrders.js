@@ -50,7 +50,7 @@ const LiveOrders = () => {
           data={orderSteps}
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{gap:30, marginHorizontal:30}}
+          contentContainerStyle={{paddingHorizontal:35,gap:35}}
           renderItem={({item}) => (
              <TouchableOpacity
              onPress={()=>navigation.navigate('Tracking')}
@@ -184,17 +184,17 @@ const styles = StyleSheet.create({
   detailsContainer: {
     borderRadius: 15,
     backgroundColor: Colors.EerieBlack,
-    paddingVertical: 20,
+    paddingVertical: 15,
     marginTop:90,
-    marginBottom:20,
-    paddingHorizontal:30,
+    marginBottom:15,
+    paddingHorizontal:25,
   },
   profileHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingBottom: 20,
-    borderBottomWidth: 0.2,
+    borderBottomWidth: 0.5,
     borderColor: Colors.gray,
   },
   profileInfo: {
