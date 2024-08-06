@@ -51,7 +51,7 @@ const LiveOrders = () => {
           data={orderSteps}
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{gap:20,paddingHorizontal:20}}
+          contentContainerStyle={{gap:25,paddingHorizontal:25}}
           renderItem={({item}) => (
                <TouchableOpacity
              onPress={()=>navigation.navigate('Tracking')}
