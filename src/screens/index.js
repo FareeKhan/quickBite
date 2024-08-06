@@ -18,7 +18,6 @@ import MyCartScreen from "./userScreens/myCart/MyCart";
 import Checkout from "./userScreens/myCart/Checkout";
 // orders
 import OrdersScreen from "./userScreens/orders/Orders";
-import LiveOrders from "./userScreens/orders/LiveOrders";
 import Tracking from "./userScreens/orders/Tracking";
 import Report from "./userScreens/orders/Report";
 // account
@@ -48,7 +47,6 @@ export {
     MyCartScreen,
     OrdersScreen,
     AccountScreen,
-    LiveOrders,
     Checkout,
     HelpCenter,
     Rewards,

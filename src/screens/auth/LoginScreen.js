@@ -12,6 +12,7 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from '@react-navigation/native';
+import LottieView from 'lottie-react-native';
 import {Colors} from '../../constants/color';
 import Icons from '../../assets/icons';
 
@@ -20,6 +21,7 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [isCredentialsCorrect, setIsCredentialsCorrect] = useState(true);
+  const [loading, setLoading] = useState(false); 
   const navigation = useNavigation();
 
   const toggleSecureEntry = () => {
@@ -34,12 +36,15 @@ const LoginScreen = () => {
 
     if (isValidEmail && isValidPassword) {
       setIsCredentialsCorrect(true);
-      navigation.navigate('BottomTabNavigation');
+      setLoading(true); 
+      setTimeout(() => {
+        setLoading(false);
+        navigation.navigate('BottomTabNavigation');
+      }, 100);
     } else {
       setIsCredentialsCorrect(false);
     }
   };
-
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>
@@ -195,18 +200,29 @@ const LoginScreen = () => {
                     : Colors.primary,
               },
             ]}>
-            <Text
-              style={[
-                styles.loginButtonText,
-                {
-                  color:
-                    email && password && isCredentialsCorrect
-                      ? Colors.darkBronze
-                      : Colors.gray,
-                },
-              ]}>
-              Login
-            </Text>
+              {loading?(
+                <LottieView
+                style={{height: 30, width: 30, marginVertical: -1}}
+                source={require('../../assets/LottieFiles/whiteLoader.json')}
+                autoPlay
+                loop
+              />
+              )
+              :(
+                <Text
+                style={[
+                  styles.loginButtonText,
+                  {
+                    color:
+                      email && password && isCredentialsCorrect
+                        ? Colors.darkBronze
+                        : Colors.gray,
+                  },
+                ]}>
+                Login
+              </Text>
+              )
+            }
           </TouchableOpacity>
           <Text style={styles.createAccount}>
             Don’t have an account?{'  '}

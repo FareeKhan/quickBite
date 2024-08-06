@@ -10,22 +10,41 @@ import {
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import LottieView from 'lottie-react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Colors} from '../../constants/color';
 import Icons from '../../assets/icons';
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(false);
   const [securePasswordEntry, setSecurePasswordEntry] = useState(true);
   const [secureConfirmEntry, setSecureConfirmEntry] = useState(true);
-  
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
   const toggleSecurePasswordEntry = () => {
     setSecurePasswordEntry(!securePasswordEntry);
   };
-  
+
   const toggleSecureConfirmEntry = () => {
     setSecureConfirmEntry(!secureConfirmEntry);
   };
+
+  const handleRegister = () => {
+    if (fullName && email && password && confirmPassword) {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        navigation.navigate('BottomTabNavigation');
+      }, 100); 
+    }
+  };
+
+  const buttonColor = fullName&&email&&password&&confirmPassword ? Colors.btnColor : Colors.EerieBlack;
+  const buttonTextColor = fullName&&email&&password&&confirmPassword ? Colors.darkBronze : Colors.gray;
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -52,6 +71,8 @@ const RegisterScreen = () => {
                 placeholder="Enter your full name"
                 placeholderTextColor={Colors.gray}
                 style={styles.textInput}
+                value={fullName}
+                onChangeText={text => setFullName(text)}
               />
             </View>
           </View>
@@ -63,6 +84,8 @@ const RegisterScreen = () => {
                 placeholder="Enter your email address"
                 placeholderTextColor={Colors.gray}
                 style={styles.textInput}
+                value={email}
+                onChangeText={text => setEmail(text)}
               />
             </View>
           </View>
@@ -75,8 +98,12 @@ const RegisterScreen = () => {
                 placeholderTextColor={Colors.gray}
                 style={styles.textInput}
                 secureTextEntry={securePasswordEntry}
+                value={password}
+                onChangeText={text => setPassword(text)}
               />
-              <TouchableOpacity activeOpacity={0.8} onPress={toggleSecurePasswordEntry}>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={toggleSecurePasswordEntry}>
                 {securePasswordEntry ? <Icons.EyeOff /> : <Icons.EyeIcon />}
               </TouchableOpacity>
             </View>
@@ -90,14 +117,32 @@ const RegisterScreen = () => {
                 placeholderTextColor={Colors.gray}
                 style={styles.textInput}
                 secureTextEntry={secureConfirmEntry}
+                value={confirmPassword}
+                onChangeText={text => setConfirmPassword(text)}
               />
-              <TouchableOpacity activeOpacity={0.8} onPress={toggleSecureConfirmEntry}>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={toggleSecureConfirmEntry}>
                 {secureConfirmEntry ? <Icons.EyeOff /> : <Icons.EyeIcon />}
               </TouchableOpacity>
             </View>
           </View>
-          <TouchableOpacity activeOpacity={0.8} style={styles.registerBtn}>
-            <Text style={styles.registerBtnText}>Create Account</Text>
+          <TouchableOpacity
+            onPress={handleRegister}
+            activeOpacity={0.8}
+            style={[styles.registerBtn, { backgroundColor: buttonColor }]}>
+            {loading ? (
+              <LottieView
+                style={{ height: 30, width: 30, marginVertical: -1 }}
+                source={require('../../assets/LottieFiles/whiteLoader.json')}
+                autoPlay
+                loop
+              />
+            ) : (
+              <Text style={[styles.registerBtnText, { color: buttonTextColor }]}>
+                Create Account
+              </Text>
+            )}
           </TouchableOpacity>
         </KeyboardAwareScrollView>
       </SafeAreaView>

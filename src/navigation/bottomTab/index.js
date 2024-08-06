@@ -7,8 +7,8 @@ import {
   HomeScreen,
   MyCartScreen,
   AccountScreen,
+  OrdersScreen,
 } from '../../screens';
-import OrderNavigator from '../orders';
 
 const BottomTabNavigation = () => {
   const Tab = createBottomTabNavigator();
@@ -26,9 +26,9 @@ const BottomTabNavigation = () => {
           height: 100,
           gap: 23,
           paddingTop: 22,
-          borderTopWidth:0
+          borderTopWidth: 0,
         },
-        tabBarHideOnKeyboard:'true'
+        tabBarHideOnKeyboard: 'true',
       }}
       initialRouteName="Home">
       <Tab.Screen
@@ -57,7 +57,7 @@ const BottomTabNavigation = () => {
       />
       <Tab.Screen
         name="Orders"
-        component={OrderNavigator}
+        component={OrdersScreen}
         options={{
           tabBarIcon: ({focused}) =>
             focused ? (
