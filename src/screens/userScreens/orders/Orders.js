@@ -31,7 +31,7 @@ const Orders = () => {
           selectedTab === 'LiveOrders' &&
           require('../../../assets/images/Map.png')
         }
-        style={{height: '100%', width: '100%', paddingTop: 40}}>
+        style={{height: '100%', width: '100%'}}>
         <View style={styles.header}>
           <TouchableOpacity
             style={styles.backButton}
@@ -266,6 +266,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 100,
     paddingHorizontal: 20,
+    marginTop:40
   },
   headerTitle: {
     fontFamily: 'Manrope-Medium',
