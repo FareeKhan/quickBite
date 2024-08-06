@@ -270,9 +270,9 @@ export const orderCancelOptions = [
   {id:'3',title: 'Call me and Confirm'},
 ];
 export const notificationOptions = [
-  {title: 'Receive push notifications'},
-  {title: 'Receive offers by email'},
-  {title: 'Show floating icon'},
+  {id:'1',title: 'Receive push notifications'},
+  {id:'2',title: 'Receive offers by email'},
+  {id:'3',title: 'Show floating icon'},
 ];
 export const orderCancelReasons = [
   {id:'1',title: 'Rider is too far'},
@@ -288,8 +288,8 @@ export const deliveryMethods = [
   {id:'2',title: 'Pick Up'},
 ];
 export const languageOptions = [
-  {title: 'English'},
-  {title: 'Urdu'}
+  {id:'1',title: 'English'},
+  {id:'2',title: 'Urdu'}
 ];
 export const orderSteps = [
   {title: 'Order Confirmed', time: '7:00pm'},

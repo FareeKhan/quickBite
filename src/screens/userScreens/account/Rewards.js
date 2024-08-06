@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
+    width:'48%'
   },
   statNumber: {
     fontFamily: 'Manrope-SemiBold',
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
   },
   taskDetails: {
     position: 'absolute',
-    gap: 10,
+    gap: 15,
     padding: 20,
     width: '100%',
   },
@@ -160,7 +161,8 @@ const styles = StyleSheet.create({
     gap: 15,
     position: 'absolute',
     top: '11%',
-    right: '-11.5%',
+    width:'70%',
+    alignSelf:"flex-end"
   },
   pointsBadge: {
     paddingHorizontal: 17,
@@ -170,7 +172,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.btnColor,
     borderRadius: 8,
-    width: '35%',
+    width:'42%'
   },
   pointsText: {
     fontFamily: 'Manrope-Medium',
@@ -185,7 +187,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#89898975',
     borderRadius: 8,
-    width: '35%',
+    width:'42%'
   },
   claimText: {
     fontFamily: 'Manrope-Medium',

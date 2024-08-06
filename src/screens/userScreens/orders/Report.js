@@ -34,8 +34,9 @@ const Report = () => {
         </View>
         <View style={styles.orderCancelCard}>
           <Text style={styles.BSHeaderTitle}>Reason for cancelling order</Text>
-          {orderCancelReasons.map(item => (
+          {orderCancelReasons.map((item,index) => (
             <TouchableOpacity
+            key={index}
               onPress={() => handleSelectOption(item)}
               activeOpacity={0.8}
               style={styles.optionRow}>

@@ -371,13 +371,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   btn: {
-    padding: 15,
+    padding: 18,
     backgroundColor: Colors.EerieBlack,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
     gap: 15,
-    width: '32%',
   },
   btnText: {
     fontFamily: 'Manrope-Medium',

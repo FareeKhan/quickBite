@@ -7,7 +7,6 @@ import {
   ScrollView,
   Image,
   TextInput,
-  Platform
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -222,10 +221,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems:'center'
   },
   inputWrapper: {
-    flex: 1,
-    marginHorizontal: 5,
+    width:'47%',
   },
   inputLabel: {
     fontFamily: 'Manrope-Medium',
@@ -234,18 +233,19 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   inputContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     backgroundColor: Colors.primary,
     borderRadius: 12,
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 5,
+    justifyContent:'space-between',
   },
   input: {
     fontFamily: 'Manrope-Medium',
     fontSize: 12,
     color: Colors.gray,
-    width: 118,
+    width:"75%"
   },
   connectAccountsTitle: {
     fontFamily: 'Manrope-Medium',
@@ -262,6 +262,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
+    marginBottom:30
   },
   googleButtonText: {
     fontFamily: 'Manrope-Medium',
@@ -273,7 +274,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: Colors.btnColor,
     position: 'absolute',
-    bottom: '35%',
+    bottom: '57%',
     right: '6%',
   },
 });

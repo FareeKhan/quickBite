@@ -46,13 +46,14 @@ const LiveOrders = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <FlatList
+      <View style={{position:"absolute",bottom:'2%'}}>
+      <FlatList
           data={orderSteps}
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{paddingHorizontal:35,gap:35}}
+          contentContainerStyle={{gap:20,paddingHorizontal:20}}
           renderItem={({item}) => (
-             <TouchableOpacity
+               <TouchableOpacity
              onPress={()=>navigation.navigate('Tracking')}
              activeOpacity={0.8}
               style={styles.detailsContainer}>
@@ -66,7 +67,7 @@ const LiveOrders = () => {
                   <View>
                     <Text style={styles.profileName}>John</Text>
                     <View style={styles.ratingContainer}>
-                      <Icons.StarLarge height={15} width={15} />
+                      <Icons.StarLarge height={20} width={20} />
                       <Text style={styles.ratingText}>4.1/5.0</Text>
                     </View>
                   </View>
@@ -109,8 +110,10 @@ const LiveOrders = () => {
                 />
                 <Text style={styles.dateText}>6-13-2024</Text>
               </View>
-            </TouchableOpacity>)}
-        /> 
+            </TouchableOpacity>
+          )}
+        />
+      </View>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -184,10 +187,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     borderRadius: 15,
     backgroundColor: Colors.EerieBlack,
-    paddingVertical: 15,
-    marginTop:90,
-    marginBottom:15,
-    paddingHorizontal:25,
+    padding:25
   },
   profileHeader: {
     flexDirection: 'row',
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
   },
   profileName: {
     fontFamily: 'Manrope-Regular',
-    fontSize: 18,
+    fontSize: 19,
     color: Colors.white,
   },
   ratingContainer: {
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontFamily: 'Manrope-Medium',
-    fontSize: 14,
+    fontSize: 15,
     color: Colors.gray,
   },
   actionContainer: {
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   },
   stepContainer: {
     flexDirection: 'row',
-    gap: 20,
+    gap: 25,
   },
   stepIcon: {
     height: 40,
@@ -265,17 +265,17 @@ const styles = StyleSheet.create({
   },
   stepTitle: {
     fontFamily: 'Manrope-Medium',
-    fontSize: 15,
+    fontSize: 16,
     color: Colors.white,
   },
   stepTime: {
     fontFamily: 'Manrope-Medium',
-    fontSize: 13,
+    fontSize: 14,
     color: Colors.gray,
   },
   dateText: {
     fontFamily: 'Manrope-Medium',
-    fontSize: 13,
+    fontSize: 14,
     color: Colors.gray,
   },
 });

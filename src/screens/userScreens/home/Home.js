@@ -20,13 +20,13 @@ import {Colors} from '../../../constants/color';
 import Icons from '../../../assets/icons';
 import {
   deals,
-  shops,
   categories,
   restaurants,
   brands,
   Popular,
-  HotAndSpicy
+  HotAndSpicy,
 } from '../../../constants/data';
+import Restaurants from './restaurant/Restaurants';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -65,14 +65,18 @@ const Home = () => {
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled">
             <View style={styles.headerContainer}>
-              <TouchableOpacity onPress={()=>navigation.navigate('AddAddress')} activeOpacity={0.8} style={styles.locationBtn}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('AddAddress')}
+                activeOpacity={0.8}
+                style={styles.locationBtn}>
                 <Icons.LocationIcon />
                 <Text style={styles.locationText}>Hyderabad, Sindh</Text>
                 <Icons.DownArrow />
               </TouchableOpacity>
               <TouchableOpacity
-              onPress={()=>navigation.navigate('Favourites')}
-               activeOpacity={0.8} style={styles.heartBtn}>
+                onPress={() => navigation.navigate('Favourites')}
+                activeOpacity={0.8}
+                style={styles.heartBtn}>
                 <Icons.HeartIcon />
               </TouchableOpacity>
             </View>
@@ -150,7 +154,46 @@ const Home = () => {
             </View>
             <View style={styles.section}>
               <Text style={styles.sectionTitleText}>Shop Now</Text>
-              <View style={{marginTop: 20}}>
+              <View
+                style={{
+                  marginTop: 20,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginHorizontal: 20,
+                }}>
+                <View style={{width:'48%'}}>
+                <Image
+                  source={require('../../../assets/images/BG.png')}
+                  style={{
+                    width: '100%',
+                    height: 120,
+                    borderRadius: 12,
+                    backgroundColor: Colors.EerieBlack,
+                  }}
+                />
+                <View style={styles.shopContent}>
+                  <Icons.Restaurant />
+                  <Text style={styles.shopTitle}>All Restaurants</Text>
+                </View>
+                </View>
+                <View style={{width:'48%'}}>
+                <Image
+                  source={require('../../../assets/images/BG.png')}
+                  style={{
+                    width: '100%',
+                    height: 120,
+                    borderRadius: 12,
+                    backgroundColor: Colors.EerieBlack,
+                  }}
+                />
+                <View style={styles.shopContent}>
+                <Icons.Pricetag/>
+                  <Text style={styles.shopTitle}>DiscountedOffers</Text>
+                </View>
+              </View>
+                </View>
+              {/* <View style={{marginTop: 20}}>
                 <FlatList
                   data={shops}
                   showsVerticalScrollIndicator={false}
@@ -164,6 +207,7 @@ const Home = () => {
                         style={{
                           height: 120,
                           width: 170,
+                          // width:"50%",
                           backgroundColor: Colors.EerieBlack,
                           borderRadius: 20,
                           justifyContent: 'center',
@@ -179,7 +223,7 @@ const Home = () => {
                     </TouchableOpacity>
                   )}
                 />
-              </View>
+              </View> */}
             </View>
             <View style={styles.section}>
               <Text style={styles.sectionTitleText}>Category</Text>
@@ -569,9 +613,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 5,
     height: 120,
-    width: 170,
+    width: '48%',
     position: 'absolute',
     justifyContent: 'center',
+    width:"100%"
   },
   shopImage: {
     height: 50,

@@ -67,7 +67,7 @@ const AddAddress = () => {
             <BottomSheetComponent
               onPressMenu={() => setisOpened(!isOpened)}
               marginBottom={10}
-              HEIGHT={isOpened?'85%':'88%'}
+              HEIGHT={isOpened?'80%':'88%'}
               Component={() => (
                 <>
                   <View style={[styles.divider, {marginTop: 15}]} />
