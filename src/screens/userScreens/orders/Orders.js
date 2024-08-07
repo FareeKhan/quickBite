@@ -9,6 +9,7 @@ import {
   Image,
   FlatList,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import StarRating from 'react-native-star-rating-widget';
@@ -87,6 +88,8 @@ const Orders = () => {
             <FlatList
               data={orderSteps}
               horizontal
+              pagingEnabled
+              snapToAlignment='center'
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={{gap: 25, paddingHorizontal: 25}}
               renderItem={({item}) => (
@@ -97,7 +100,7 @@ const Orders = () => {
                   <View style={styles.profileHeader}>
                     <View style={styles.profileInfo}>
                       <Image
-                        source={require('../../../assets/images/userProfile.png')}
+                        source={require('../../../assets/images/userProfile.jpg')}
                         resizeMode="cover"
                         style={styles.profileImage}
                       />
@@ -266,7 +269,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 100,
     paddingHorizontal: 20,
-    marginTop:40
+    marginTop: 40,
   },
   headerTitle: {
     fontFamily: 'Manrope-Medium',
@@ -407,9 +410,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Bold',
   },
   detailsContainer: {
-    borderRadius: 15,
+    width: Dimensions.get('screen').width / 1.15,
     backgroundColor: Colors.EerieBlack,
-    padding: 25,
+    borderRadius: 15,
+    alignSelf: 'center',
+    overflow: 'hidden',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    padding:25
   },
   profileHeader: {
     flexDirection: 'row',

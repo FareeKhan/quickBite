@@ -58,7 +58,7 @@ const Profile = () => {
         onPress={takeImageFromGallery}
         activeOpacity={0.8} style={styles.profilePictureContainer}>
           <Image
-            source={avatarImage ? { uri: avatarImage } : require('../../../assets/images/userProfile.png')}
+            source={avatarImage ? { uri: avatarImage } : require('../../../assets/images/userProfile.jpg')}
             resizeMode="cover"
             style={styles.profileImage}
           />

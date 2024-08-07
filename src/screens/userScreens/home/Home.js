@@ -33,6 +33,7 @@ const Home = () => {
   const [popular, setPopular] = useState(Popular);
   const [hotAndSpicy, setHotAndSpicy] = useState(HotAndSpicy);
   const [selectedCategory, setSelectedCategory] = useState(0);
+  const [sliderValue, setSliderValue] = useState(6);
 
   const handlePopularQtyChange = (index, newQty) => {
     if (newQty >= 0) {
@@ -101,7 +102,7 @@ const Home = () => {
                   <Text style={styles.trackTime}>10 mins</Text>
                 </View>
                 <Slider
-                  value={6}
+                  value={sliderValue}
                   minimumValue={1}
                   maximumValue={10}
                   step={1}
@@ -113,7 +114,13 @@ const Home = () => {
                   minTrackStyle={styles.minTrack}
                   maxTrackStyle={styles.maxTrack}
                   enabled={false}
-                  thumbImage={require('../../../assets/images/ThumbImage.png')}
+                />
+                <Icons.ThumbIcon
+                  style={{
+                    position: 'absolute',
+                    bottom: '55%',
+                    left: (sliderValue - 0.5) * 10 + '%',
+                  }}
                 />
               </View>
             </TouchableOpacity>
@@ -172,10 +179,13 @@ const Home = () => {
                       backgroundColor: Colors.EerieBlack,
                     }}
                   />
-                  <View style={styles.shopContent}>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('Restaurants')}
+                    activeOpacity={0.8}
+                    style={styles.shopContent}>
                     <Icons.Restaurant />
                     <Text style={styles.shopTitle}>All Restaurants</Text>
-                  </View>
+                  </TouchableOpacity>
                 </View>
                 <View style={{width: '48%'}}>
                   <Image
@@ -187,10 +197,13 @@ const Home = () => {
                       backgroundColor: Colors.EerieBlack,
                     }}
                   />
-                  <View style={styles.shopContent}>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('DiscountedOffers')}
+                    activeOpacity={0.8}
+                    style={styles.shopContent}>
                     <Icons.Pricetag />
                     <Text style={styles.shopTitle}>DiscountedOffers</Text>
-                  </View>
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>

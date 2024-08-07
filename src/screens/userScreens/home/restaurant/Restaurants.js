@@ -159,8 +159,8 @@ const styles = StyleSheet.create({
     color: Colors.white,
   },
   iconContainer: {
-    height: 40,
-    width: 40,
+    height: 45,
+    width: 45,
     borderRadius: 50,
     backgroundColor: Colors.EerieBlack,
     justifyContent: 'center',

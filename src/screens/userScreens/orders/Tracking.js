@@ -32,7 +32,7 @@ const Tracking = () => {
           <View style={styles.profileSection}>
             <View style={styles.profileInfo}>
               <Image
-                source={require('../../../assets/images/userProfile.png')}
+                source={require('../../../assets/images/userProfile.jpg')}
                 resizeMode="cover"
                 style={styles.profileImage}
               />

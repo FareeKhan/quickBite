@@ -37,7 +37,7 @@ const Account = () => {
         </View>
         <View style={styles.userInfo}>
           <Image
-            source={require('../../../assets/images/userProfile.png')}
+            source={require('../../../assets/images/userProfile.jpg')}
             resizeMode="cover"
             style={styles.userProfile}
           />
